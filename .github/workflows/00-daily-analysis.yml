@@ -44,6 +44,21 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v5
       
+      - name: 检查日报必需配置
+        env:
+          STOCK_LIST_CONFIG: ${{ vars.STOCK_LIST || secrets.STOCK_LIST }}
+          RUN_MODE: ${{ github.event.inputs.mode || 'full' }}
+          MODEL_CONFIGURED: ${{ secrets.GEMINI_API_KEY != '' || secrets.GEMINI_API_KEYS != '' || secrets.DEEPSEEK_API_KEY != '' || secrets.DEEPSEEK_API_KEYS != '' || secrets.OPENAI_API_KEY != '' || secrets.OPENAI_API_KEYS != '' || secrets.ANTHROPIC_API_KEY != '' || secrets.ANTHROPIC_API_KEYS != '' || secrets.AIHUBMIX_KEY != '' || secrets.MODELFLARE_KEY != '' || secrets.ANSPIRE_API_KEYS != '' || secrets.LITELLM_API_KEY != '' || secrets.LLM_PRIMARY_API_KEY != '' || secrets.LLM_MODELFLARE_API_KEY != '' || secrets.LLM_MODELFLARE_API_KEYS != '' || vars.LITELLM_CONFIG_YAML != '' || secrets.LITELLM_CONFIG_YAML != '' || vars.LLM_CHANNELS != '' || secrets.LLM_CHANNELS != '' }}
+        run: |
+          if [ "$RUN_MODE" != "market-only" ] && [ -z "${STOCK_LIST_CONFIG:-}" ] && [ -z "${STOCK_LIST:-}" ]; then
+            echo "::error::缺少 STOCK_LIST。请在 Settings → Secrets and variables → Actions 添加最新自选股列表。不会使用示例股票代替。"
+            exit 1
+          fi
+          if [ "$MODEL_CONFIGURED" != "true" ]; then
+            echo "::error::缺少 AI 模型配置。请在 Actions Secrets 添加一个项目支持的模型 API Key。"
+            exit 1
+          fi
+
       - name: 设置 Python 环境
         uses: actions/setup-python@v6
         with:
@@ -458,7 +473,8 @@ jobs:
           if [ -n "${STOCK_LIST_CONFIG:-}" ]; then
             export STOCK_LIST="$STOCK_LIST_CONFIG"
           elif [ -z "${STOCK_LIST:-}" ]; then
-            export STOCK_LIST="600519"
+            echo "::error::STOCK_LIST 为空，停止运行以免误用示例股票。"
+            exit 1
           fi
 
           # 处理 LITELLM YAML 配置文件
