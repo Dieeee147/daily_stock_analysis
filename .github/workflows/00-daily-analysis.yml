@@ -5,9 +5,22 @@ on:
   schedule:
     - cron: '0 0 * * 1-5'      # 周一到周五，UTC 00:00 = 北京时间 08:00
   
+  # 修改此试用标记时发送一次无模型简报；常规代码修改不触发发信
+  push:
+    branches: [main]
+    paths: ['.github/no-model-trial']
+
   # 手动触发
   workflow_dispatch:
     inputs:
+      brief_mode:
+        description: '简报方式'
+        required: true
+        default: 'no-model'
+        type: choice
+        options:
+          - no-model
+          - ai
       mode:
         description: '运行模式'
         required: true
@@ -30,6 +43,7 @@ concurrency:
 
 jobs:
   analyze:
+    if: github.event_name != 'push' && (github.event.inputs.brief_mode || vars.BRIEF_MODE || 'no-model') == 'ai'
     runs-on: ubuntu-latest
     # 兼容误将 STOCK_LIST 配到同名 Environment variables 的场景；
     # 推荐位置仍是 Settings -> Secrets and variables -> Actions -> Repository variables。
@@ -604,3 +618,39 @@ jobs:
             echo "📜 最近日志（最后 30 行）:"
             tail -30 logs/stock_analysis_*.log 2>/dev/null || echo "无日志"
           fi
+
+  no-model-brief:
+    if: (github.event.inputs.brief_mode || vars.BRIEF_MODE || 'no-model') != 'ai'
+    runs-on: ubuntu-latest
+    environment: STOCK_LIST
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    env:
+      STOCK_LIST: ${{ vars.STOCK_LIST || secrets.STOCK_LIST }}
+      TAVILY_API_KEYS: ${{ secrets.TAVILY_API_KEYS }}
+      EMAIL_SENDER: ${{ vars.EMAIL_SENDER || secrets.EMAIL_SENDER }}
+      EMAIL_RECEIVERS: ${{ vars.EMAIL_RECEIVERS || secrets.EMAIL_RECEIVERS }}
+      EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      SMTP_HOST: ${{ vars.SMTP_HOST || 'smtp.qq.com' }}
+      SMTP_PORT: ${{ vars.SMTP_PORT || '465' }}
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v5
+      - name: 设置Node环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: 设置Python环境
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: 校验无模型路径
+        run: |
+          node --check scripts/no_model_brief.mjs
+          node --test scripts/no_model_brief.test.mjs
+          python -m py_compile scripts/send_brief_email.py
+      - name: 生成无模型HTML简报
+        run: node scripts/no_model_brief.mjs
+      - name: 发送HTML正文与附件
+        run: python scripts/send_brief_email.py
