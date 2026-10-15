@@ -1,0 +1,99 @@
+name: 简报服务连接测试
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/brief-service-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    environment: STOCK_LIST
+    timeout-minutes: 5
+    steps:
+      - name: 验证模型与新闻检索连接
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          TAVILY_API_KEYS: ${{ secrets.TAVILY_API_KEYS }}
+          LITELLM_MODEL: ${{ vars.LITELLM_MODEL || secrets.LITELLM_MODEL }}
+          STOCK_LIST: ${{ vars.STOCK_LIST || secrets.STOCK_LIST }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import re
+          import sys
+          from urllib.request import Request, urlopen
+          from urllib.error import HTTPError, URLError
+
+          def post_json(url, payload, key):
+              data = json.dumps(payload).encode("utf-8")
+              request = Request(url, data=data, headers={
+                  "Content-Type": "application/json",
+                  "Authorization": "Bearer " + key,
+              })
+              try:
+                  with urlopen(request, timeout=60) as response:
+                      return json.load(response)
+              except HTTPError as exc:
+                  # Do not print response bodies, request headers or credentials.
+                  raise RuntimeError("HTTP_" + str(exc.code)) from None
+              except (URLError, TimeoutError):
+                  raise RuntimeError("NETWORK_OR_TIMEOUT") from None
+              except (ValueError, OSError):
+                  raise RuntimeError("INVALID_RESPONSE_OR_NETWORK") from None
+
+          results = {}
+          stocks = [s for s in re.split(r"[,，、;；\s]+", os.getenv("STOCK_LIST", "").strip()) if s]
+          results["watchlist"] = "OK" if stocks and all(re.fullmatch(r"\d{6}", s) for s in stocks) else "INVALID"
+          results["stock_count"] = len(stocks)
+          model = os.getenv("LITELLM_MODEL", "").strip()
+          model = model.removeprefix("deepseek/")
+          results["model_name"] = "OK" if model == "deepseek-flash" else "CHECK_LITELLM_MODEL"
+
+          key = os.getenv("DEEPSEEK_API_KEY", "").strip()
+          if not key:
+              results["deepseek"] = "MISSING_KEY"
+          elif results["model_name"] != "OK":
+              results["deepseek"] = "SKIPPED_MODEL_NAME"
+          else:
+              try:
+                  response = post_json("https://api.deepseek.com/chat/completions", {
+                      "model": model,
+                      "messages": [{"role": "user", "content": "请仅回复OK。"}],
+                      "thinking": {"type": "disabled"},
+                      "max_tokens": 32,
+                      "stream": False,
+                  }, key)
+                  choices = response.get("choices", [])
+                  text = choices[0].get("message", {}).get("content", "") if choices else ""
+                  results["deepseek"] = "OK" if str(text or "").strip() else "EMPTY_RESPONSE"
+              except RuntimeError as exc:
+                  results["deepseek"] = str(exc)
+
+          keys = [k.strip() for k in os.getenv("TAVILY_API_KEYS", "").split(",") if k.strip()]
+          if not keys:
+              results["tavily"] = "MISSING_KEY"
+          else:
+              try:
+                  response = post_json("https://api.tavily.com/search", {
+                      "query": "上海证券交易所 上市公司公告",
+                      "include_domains": ["sse.com.cn", "szse.cn", "cninfo.com.cn"],
+                      "max_results": 2,
+                      "search_depth": "basic",
+                  }, keys[0])
+                  items = response.get("results")
+                  results["tavily"] = "OK" if isinstance(items, list) and items else "NO_SEARCH_RESULTS"
+              except RuntimeError as exc:
+                  results["tavily"] = str(exc)
+
+          print("SERVICE_CHECK=" + json.dumps(results, ensure_ascii=False))
+          ok = all(results.get(k) == "OK" for k in ("watchlist", "model_name", "deepseek", "tavily"))
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+              summary.write("## 简报服务检查\n\n")
+              for name, status in results.items():
+                  summary.write("- " + name + ": " + str(status) + "\n")
+              summary.write("\n此检查不发送邮件，也不输出密钥或自选股明细。\n")
+          sys.exit(0 if ok else 1)
+          PY
