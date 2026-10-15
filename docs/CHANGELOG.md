@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+- [新功能] 此Fork新增无模型晨报试用，复用新闻检索、QQ邮件配置与现有HTML设计，BRIEF_MODE=ai可恢复原流程。
+- [改进] 无模型报告明确展示原文摘录、来源与日期、规则分类和数据覆盖，缺失不补造；不注入模型密钥、不上传个性化公开artifact。
+
 - [修复] 此 Fork 每日工作流缺少自选股或模型配置时明确停止，不再回退到示例股票；定时触发改为北京时间工作日 08:00。
 - [测试] 增加 DeepSeek 与 Tavily 连接检查，仅输出脱敏状态，不发送邮件。
 - [文档] 补充事实型 HTML 晨报的部署状态、配置步骤和待完成的验收要求，区分邮件投递测试与定制报告生成。
