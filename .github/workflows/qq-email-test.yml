@@ -1,0 +1,87 @@
+name: QQ邮箱发送测试
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/qq-email-test.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qq-email-test
+  cancel-in-progress: false
+
+jobs:
+  send-test:
+    runs-on: ubuntu-latest
+    environment: STOCK_LIST
+    timeout-minutes: 5
+    steps:
+      - name: 发送一封HTML测试邮件
+        env:
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: |
+          python - <<'PY'
+          import os
+          import ssl
+          import smtplib
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          from email.message import EmailMessage
+          from email.utils import format_datetime, make_msgid
+
+          sender = "632402699@qq.com"
+          recipient = "2403028333@qq.com"
+          password = os.environ.get("EMAIL_PASSWORD", "").strip()
+          if not password:
+              raise SystemExit("未找到 EMAIL_PASSWORD：请在仓库 Actions Secrets 设置QQ邮箱SMTP授权码。")
+
+          now = datetime.now(ZoneInfo("Asia/Shanghai"))
+          message = EmailMessage()
+          message["Subject"] = "A股每日简报｜QQ邮箱HTML投递测试"
+          message["From"] = sender
+          message["To"] = recipient
+          message["Date"] = format_datetime(now)
+          message["Message-ID"] = make_msgid(domain="qq.com")
+          message.set_content(
+              "这是A股每日简报的QQ邮箱发送测试。\n"
+              "若能看到本邮件，说明测试邮件已到达此邮箱。\n"
+              "定时分析已改为北京时间工作日08:00启动。报告生成和投递需要额外时间。\n"
+              "本邮件仅测试投递与HTML显示，不包含投资建议。\n"
+              f"测试时间：{now:%Y-%m-%d %H:%M:%S}（北京时间）"
+          )
+          message.add_alternative(
+              '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"></head>'
+              '<body style="margin:0;padding:24px;background:#f3f5f9;font-family:Arial,sans-serif;color:#17243b;">'
+              '<div style="max-width:680px;margin:auto;background:white;padding:28px;border-radius:12px;">'
+              '<p style="color:#2563eb;font-size:13px;">A股每日简报 · 投递测试</p>'
+              '<h1 style="font-size:25px;">QQ邮箱 HTML 邮件测试</h1>'
+              '<p>如果你能正常阅读本邮件，说明测试邮件已到达此邮箱，HTML正文可以显示。</p>'
+              '<table style="border-collapse:collapse;width:100%;font-size:14px;">'
+              '<tr><td style="padding:10px;border-bottom:1px solid #e5e7eb;">发件人</td><td>632402699@qq.com</td></tr>'
+              '<tr><td style="padding:10px;border-bottom:1px solid #e5e7eb;">收件人</td><td>2403028333@qq.com</td></tr>'
+              '<tr><td style="padding:10px;border-bottom:1px solid #e5e7eb;">任务启动时间</td><td>北京时间工作日 08:00</td></tr>'
+              f'<tr><td style="padding:10px;">测试时间</td><td>{now:%Y-%m-%d %H:%M:%S}（北京时间）</td></tr>'
+              '</table><p style="font-size:13px;color:#64748b;">报告生成和投递需要额外时间。'
+              '本邮件仅测试邮件投递和HTML显示。</p>'
+              '<p><a href="https://github.com/Dieeee147/daily_stock_analysis" style="color:#2563eb;">查看简报项目</a></p>'
+              '<hr style="border:0;border-top:1px solid #e5e7eb;">'
+              '<p style="font-size:12px;color:#64748b;">本内容仅信息整理，不构成投资建议，请查阅交易所原始公告核实。</p>'
+              '</div></body></html>',
+              subtype="html",
+          )
+          with smtplib.SMTP_SSL("smtp.qq.com", 465, context=ssl.create_default_context(), timeout=30) as smtp:
+              smtp.login(sender, password)
+              refused = smtp.send_message(message)
+              if refused:
+                  raise SystemExit("收件人被SMTP服务器拒绝。")
+          print("SMTP_ACCEPTED: QQ SMTP服务器已接受测试邮件；是否进入收件箱需由收件方核实。")
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+              summary.write("## QQ邮箱测试结果\n\nQQ SMTP服务器已接受一封HTML测试邮件。\n\n"
+                            "- 发件人：632402699@qq.com\n"
+                            "- 收件人：2403028333@qq.com\n"
+                            "- SMTP接受不等于已确认进入收件箱，请检查收件箱及垃圾邮件。\n")
+          PY
