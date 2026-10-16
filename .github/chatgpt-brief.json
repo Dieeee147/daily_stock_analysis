@@ -1,123 +1,117 @@
 {
   "version": 1,
   "date": "2026-10-16",
-  "researchedAt": "2026-10-16T00:05:09.055Z",
+  "researchedAt": "2026-10-16T00:11:38.095Z",
   "news": [
     {
-      "title": "A股放量普跌，市场广度弱于单一指数表现",
-      "stance": "中性",
-      "sourceLabel": "国际金融报／证券时报网，记者朱灯花",
-      "published_date": "2026-10-15T22:36:00+08:00",
-      "url": "https://www.stcn.com/article/detail/4221326.html",
-      "summary": "10月15日沪指收3707.48点，跌1.59%；深成指跌2.43%，创业板指跌2.92%。沪深京成交约1.65万亿元，5108只个股下跌，430只上涨。",
-      "analysis": "成交增加与普跌同时出现，说明当日交易活跃并不等于上涨资金占优。指数、上涨家数和行业分布应合并观察；这些数据不能确认后续拐点。"
-    },
-    {
-      "title": "新易盛董事长提出8亿至10亿元回购建议",
+      "title": "新易盛回购提议：8亿至10亿元仍待形成正式方案",
       "stance": "利好",
-      "sourceLabel": "证券时报网，记者张一帆；转述公司公告",
-      "published_date": "2026-10-15T19:41:00+08:00",
-      "url": "https://www.stcn.com/article/detail/4221128.html",
-      "summary": "董事长高光荣提议以自有或自筹资金回购股份，拟用于股权激励或员工持股；建议期限为董事会通过方案后12个月。",
-      "analysis": "定性针对回购提议本身。公司仍需制定方案并履行审批，提议金额不能视为已经投入资金，也不能按注销式回购解释；应跟踪董事会方案及执行公告。"
-    },
-    {
-      "title": "江波龙披露前三季度净利润大幅预增",
-      "stance": "利好",
-      "sourceLabel": "证券时报网，记者叶玲珍；转述业绩预告",
-      "published_date": "2026-10-15T19:50:00+08:00",
-      "url": "https://www.stcn.com/article/detail/4221142.html",
-      "summary": "预计前三季度归母净利润140亿至149亿元，同比增长1864.55%至1990.84%；营收380亿至400亿元。公司同时指出存储价格涨幅收窄，盈利边际贡献趋缓。",
-      "analysis": "这是同比预增，不能在缺少一致预期数据时称为超预期。预告尚需正式季报核实；利润增幅和价格边际变化需要同时保留，不能只看最高增长数字。"
-    },
-    {
-      "title": "*ST萃华收到股票终止上市决定",
-      "stance": "利空",
-      "sourceLabel": "证券时报网，记者赵黎昀；转述深交所决定",
-      "published_date": "2026-10-15T20:39:00+08:00",
-      "url": "https://www.stcn.com/article/detail/4221207.html",
-      "summary": "公司10月15日公告收到深交所终止上市决定，原因涉及未按规定披露2025年年报，并在风险警示后的规定期限内仍未完成符合要求的披露。",
-      "analysis": "该事项是已经作出的监管决定，应与一般风险提示区分。后续安排须查交易所及公司原始公告，不能用未经证实的重组消息替代正式披露。"
-    },
-    {
-      "title": "北方华创拟以4.05亿元收购混合键合设备企业",
-      "stance": "中性",
-      "sourceLabel": "证券时报，记者赵黎昀；转述公司公告",
-      "published_date": "2026-10-16T06:47:00+08:00",
-      "url": "https://www.stcn.com/article/detail/4221387.html",
-      "summary": "全资子公司签署股权转让协议，拟收购诺合键维100%股权，构成关联交易。标的2025年及2026年上半年净利润为负，产品仍处验证和导入阶段。",
-      "analysis": "收购拓展设备布局，但标的盈利情况及关联交易因素并存，因此保留中性。签约不等于完成交割，不能将公司关于协同的表述当作已实现利润。"
-    },
-    {
-      "title": "财政部表态精准有效实施更加积极的财政政策",
-      "stance": "中性",
-      "sourceLabel": "证券时报，记者贺觉渊；报道G20会议发言",
-      "published_date": "2026-10-16T06:47:00+08:00",
-      "url": "https://www.stcn.com/article/detail/4221379.html",
-      "summary": "财政部长蓝佛安在10月15日G20财长和央行行长会议上表示，将精准有效实施更加积极的财政政策，强调宏观协调、结构改革和开放合作。",
-      "analysis": "报道是政策方向表述，并未给出新增财政规模或公司受益清单。只有后续明确的资金、项目与适用条件，才可建立对单家公司的直接关联。"
-    },
-    {
-      "title": "央行重申继续实施好适度宽松的货币政策",
-      "stance": "中性",
-      "sourceLabel": "证券时报，记者贺觉渊；报道央行行长发言",
-      "published_date": "2026-10-16T06:47:00+08:00",
-      "url": "https://www.stcn.com/article/detail/4221373.html",
-      "summary": "潘功胜在G20会议上重申适度宽松的货币政策，并指出全球失衡不能单靠汇率调节，强调关注资本流动及金融稳定风险。",
-      "analysis": "该表态不能等同于已经降准、降息或确定人民币方向。观察政策执行需另查央行正式操作及利率公告，不将宏观表态强行映射为自选股利好。"
-    },
-    {
-      "title": "IMF官员呼吁中国扩大财政支持",
-      "stance": "中性",
-      "sourceLabel": "路透，记者Leika Kihara；引述IMF亚太部负责人",
-      "published_date": "2026-10-15T03:49:00Z",
-      "url": "https://www.reuters.com/world/asia-pacific/imf-urges-china-deploy-bigger-fiscal-stimulus-2026-10-15/",
-      "summary": "IMF官员Krishna Srinivasan认为中国仍需扩大财政支持，关注内需与房地产调整。报道引述IMF对2026、2027年增长预测为4.5%、4.0%。",
-      "analysis": "这是国际机构观点及预测，既不是已实现GDP，也不是中国已宣布的新增政策；不与财政部会议表态合并为同一个决定。"
-    },
-    {
-      "title": "美国大银行三季报呈现业务分化",
-      "stance": "中性",
-      "sourceLabel": "路透，记者Manya Saini；第三季度银行财报综述",
-      "published_date": "2026-10-15T10:05:00Z",
-      "url": "https://www.reuters.com/business/finance/wall-st-banks-caught-capital-markets-lull-after-strong-first-half-2026-2026-10-15/",
-      "summary": "路透称摩根大通和美国银行利润未达市场预期，另外四大行超预期。股票交易业务相对较强，投行业务及固定收益交易动能转弱。",
-      "analysis": "银行整体盈利不能代替细分业务判断；美国银行结果也不能直接推定A股银行盈利变化，需核对各自收入结构和披露口径。"
-    },
-    {
-      "title": "美国9月PPI加速，零售额增长含价格因素",
-      "stance": "中性",
-      "sourceLabel": "美联社，记者Christopher Rugaber及Anne D’Innocenzio；美国政府数据报道",
+      "sourceLabel": "证券时报网，张一帆；公司公告的媒体转述",
       "published_date": "2026-10-15",
-      "url": "https://apnews.com/article/producer-prices-inflation-economy-ff5adf8283a770c2ca9897b10a09dda7",
-      "summary": "9月PPI环比上涨1.3%、同比6.3%。另一篇美联社报道显示零售额环比增0.8%，剔除加油站后增0.2%；零售数据未扣除通胀。",
-      "analysis": "批发通胀与名义消费额属于不同指标；名义销售增长不能全部解释成实际需求增长，亦不能据此确定美联储下一次决策。",
-      "extraSources": [
-        {
-          "label": "美联社零售销售原文",
-          "url": "https://apnews.com/article/retail-consumers-layoffs-inflation-sentiment-86bf3eb7412aa27b24febd52aae7a7f1"
-        }
-      ]
+      "url": "https://www.stcn.com/article/detail/4221128.html",
+      "summary": "董事长高光荣提议使用自有或自筹资金回购股份，金额8亿至10亿元，拟用于股权激励或员工持股。建议期限为董事会通过方案起12个月。",
+      "analysis": "回购意向属于积极事项，但目前是提议阶段；金额不是已执行额，用途也不是注销。核实重点是董事会方案、审批条件和之后实际成交披露。"
+    },
+    {
+      "title": "江波龙前三季度预增，同时提示存储涨价边际放缓",
+      "stance": "利好",
+      "sourceLabel": "证券时报网，叶玲珍；公司业绩预告的媒体转述",
+      "published_date": "2026-10-15",
+      "url": "https://stcn.com/article/detail/4221142.html",
+      "summary": "预计前三季度净利润140亿至149亿元，同比增长1864.55%至1990.84%；预计营收380亿至400亿元。公司指出DRAM、NAND Flash涨价幅度收窄。",
+      "analysis": "同比高增与涨价对盈利边际贡献趋缓可以同时成立。预告不同于正式季报；未取得可核实一致预期，不能将同比增长直接称为超预期。"
+    },
+    {
+      "title": "赣锋锂业三季报：累计利润与第三季度增速存在差别",
+      "stance": "利好",
+      "sourceLabel": "证券时报，唐强；公司三季报的媒体转述",
+      "published_date": "2026-10-16T06:46:00+08:00",
+      "url": "https://stcn.com/article/detail/4221367.html",
+      "summary": "前三季度营收361.59亿元，归母净利润50.12亿元，同比增长19540.5%；扣非净利润46.36亿元，同比增592.14%。第三季度归母净利润7.55亿元，同比增35.62%。",
+      "analysis": "前三季度与单季、归母与扣非的增幅不同，不能拿最高同比数字概括所有经营表现。报道将增长归因于锂产品售价及电池销量，细节仍需查季报。"
+    },
+    {
+      "title": "*ST萃华终止上市决定已下达，关注退市安排原始披露",
+      "stance": "利空",
+      "sourceLabel": "证券时报网，赵黎昀；公司收到深交所决定的媒体转述",
+      "published_date": "2026-10-15",
+      "url": "https://stcn.com/article/detail/4221207.html",
+      "summary": "10月15日公司收到深交所股票终止上市决定，涉及未依规披露2025年年报。报道列示退市整理期起始日为10月23日，预计最后交易日11月12日。",
+      "analysis": "这是正式决定而非事先告知。最后交易日是公告预计安排，若有停牌等情形应以更新公告为准；不得据此补写未核实的重组或救助信息。"
+    },
+    {
+      "title": "北方华创4.05亿元关联收购：标的尚处导入阶段",
+      "stance": "中性",
+      "sourceLabel": "证券时报，赵黎昀；公司股权转让协议公告的媒体转述",
+      "published_date": "2026-10-16T06:47:00+08:00",
+      "url": "https://stcn.com/article/detail/4221387.html",
+      "summary": "子公司拟现金收购诺合键维100%股权，交易金额4.05亿元，构成关联交易。标的研发混合键合设备，2025年及2026年上半年净利润均为负。",
+      "analysis": "业务布局扩展和标的亏损须一起呈现，因此定性中性。签署协议不能视为交割完成，设备验证、关联交易程序及后续并表表现是核实事项。"
+    },
+    {
+      "title": "三部门对车辆刹车踏板支架问题开展联合核查",
+      "stance": "中性",
+      "sourceLabel": "证券时报，韩忠楠；三部门联合调查信息的媒体报道",
+      "published_date": "2026-10-16T06:47:00+08:00",
+      "url": "https://stcn.com/article/detail/4221374.html",
+      "summary": "工信部、中央网信办和市场监管总局在前期调查基础上成立联合调查组，对有关车辆刹车踏板支架问题开展核查，表示相关情况将及时公布。",
+      "analysis": "仅确认监管部门开展核查，不将待核实问题写成已认定的缺陷或处罚。尚无结论时，不扩大归因至其他车型、零部件供应商或上市公司。"
+    },
+    {
+      "title": "财政政策表态：方向明确，新增规模并未在报道中公布",
+      "stance": "中性",
+      "sourceLabel": "证券时报，贺觉渊；财政部长G20会议发言报道",
+      "published_date": "2026-10-16T06:47:00+08:00",
+      "url": "https://stcn.com/article/detail/4221379.html",
+      "summary": "蓝佛安在10月15日G20财长和央行行长会议上表示，将精准有效实施更加积极的财政政策，并强调宏观政策协调、结构性改革与开放合作。",
+      "analysis": "政策方向表述不是具体预算或资金下达文件。没有新增规模、受益项目和适用条件，不据此认定某家公司获得订单或直接政策利好。"
+    },
+    {
+      "title": "央行重申适度宽松，不能据此认定已降准降息",
+      "stance": "中性",
+      "sourceLabel": "证券时报，贺觉渊；中国人民银行行长G20会议发言报道",
+      "published_date": "2026-10-16T06:47:00+08:00",
+      "url": "https://stcn.com/article/detail/4221373.html",
+      "summary": "潘功胜表示继续实施好适度宽松的货币政策，并强调关注资本流动和金融稳定；对于全球失衡，指出不能仅靠汇率调整解决。",
+      "analysis": "政策立场与具体工具操作需要区分。报道未公布新的降准幅度、政策利率调整或汇率目标，核实操作应另查央行正式公告。"
+    },
+    {
+      "title": "美国PPI及零售数据：价格因素与名义增长需分开",
+      "stance": "中性",
+      "sourceLabel": "路透，Lucia Mutikani；美国官方数据报道",
+      "published_date": "2026-10-15",
+      "url": "https://www.reuters.com/business/us-producer-prices-post-largest-increase-4-12-years-september-2026-10-15/",
+      "summary": "美国9月PPI环比增1.3%、同比6.3%；零售额环比增0.8%，未扣除通胀；剔除汽车、汽油、建材和餐饮的核心零售额增0.1%。",
+      "analysis": "零售额走高不全是销量增加；核心零售与总额口径不同，不能混用。通胀数据本身也不等于已作出的美联储加息决定。"
+    },
+    {
+      "title": "隔夜美股收涨，半导体指数仍回落",
+      "stance": "中性",
+      "sourceLabel": "路透，Noel Randewich、Sruthi Shankar；美国10月15日收盘报道",
+      "published_date": "2026-10-15",
+      "url": "https://www.reuters.com/business/nasdaq-futures-dive-1-ai-rout-deepens-debt-concerns-2026-10-15/",
+      "summary": "标普500收7744.06点、涨0.33%；纳指26713.03点、涨0.08%；道指52177.69点、涨1.08%。费城半导体指数跌0.9%，连续第七日下跌。",
+      "analysis": "大盘与细分行业方向分化，不能用指数上涨概括全部AI资产，也不能直接推断随后A股方向。数值均为美国当地10月15日收盘。"
     }
   ],
   "analysts": [
     {
-      "title": "高盛：观察中国AI企业的成本效率与应用生态",
+      "title": "高盛公开访谈：AI竞争从性能延伸至成本与工作流生态",
       "stance": "中性",
-      "sourceLabel": "高盛官网，Ronald Keung、Allen Chang公开访谈整理；非完整研报",
+      "sourceLabel": "高盛官网；Ronald Keung、Allen Chang；公开访谈整理，非完整GIR研报",
       "published_date": "2026-10-09",
       "url": "https://www.goldmansachs.com/insights/articles/competition-among-chinas-ai-models-is-intensifying-as-chip-sector-advances",
-      "summary": "Keung认为模型性能趋近后，成本及承载模型的工具与工作流生态更受关注。Chang指出国产半导体推进较快，但GPU、晶圆制造及设备供给仍有限制。",
-      "analysis": "这是10月9日公开观点，不是隔夜新研报。行业判断未点名本报告自选股，也未提供其订单证据，因此不建立具体公司受益结论。"
+      "summary": "Keung关注模型性能差距缩小时的成本效率及承载模型的工具生态；Chang认为中国半导体推进较快，但GPU、晶圆制造及设备能力仍有瓶颈。",
+      "analysis": "这是10月9日已发表观点，不能标为隔夜新研报。材料表达产业观察，不提供本简报任何具体公司的已签订单或利润保证。"
     },
     {
-      "title": "高盛资管10月观点：利率、通胀与债券收入",
+      "title": "高盛资管10月评论：债券收入机会与信用风险并存",
       "stance": "中性",
-      "sourceLabel": "高盛资产管理，Candice Tse、John Tousley、Jennifer Guenther；公开市场评论，非GIR研究报告",
+      "sourceLabel": "高盛资产管理；Candice Tse、John Tousley、Jennifer Guenther；公开市场评论，非GIR研究报告",
       "published_date": "2026-10-06",
       "url": "https://am.gs.com/en-us/advisors/insights/article/market-pulse",
-      "summary": "文章强调高利率环境下的债券收入机会，同时关注信用利差。作者当时预计美联储、欧洲央行和英国央行年内各再加息一次，之后观察数据。",
-      "analysis": "上述判断形成于10月6日，早于最新通胀数据，不能冒充10月15日修订后的预测。其前提是通胀逐步正常化，观点可能随数据变化。"
+      "summary": "作者认为较高收益率改善债券收入条件，同时需关注信用利差和资产质量；当时预期美联储、欧洲央行及英国央行年内各再加息一次，随后观察数据。",
+      "analysis": "前提是通胀逐步正常化。该观点早于10月15日的新数据，不能将旧预测写成已经更新的机构结论，亦不等同于央行实际决策。"
     }
   ]
 }
