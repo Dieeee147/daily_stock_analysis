@@ -1,0 +1,41 @@
+name: ChatGPT简报邮件测试
+on:
+  push:
+    branches: [main]
+    paths: ['.github/chatgpt-brief.json']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: chatgpt-brief-delivery
+  cancel-in-progress: false
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    environment: STOCK_LIST
+    timeout-minutes: 20
+    env:
+      STOCK_LIST: ${{ vars.STOCK_LIST || secrets.STOCK_LIST }}
+      TAVILY_API_KEYS: ${{ secrets.TAVILY_API_KEYS }}
+      EMAIL_SENDER: ${{ vars.EMAIL_SENDER || secrets.EMAIL_SENDER }}
+      EMAIL_RECEIVERS: ${{ vars.EMAIL_RECEIVERS || secrets.EMAIL_RECEIVERS }}
+      EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      SMTP_HOST: ${{ vars.SMTP_HOST || 'smtp.qq.com' }}
+      SMTP_PORT: ${{ vars.SMTP_PORT || '465' }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: 校验分析版路径
+        run: |
+          node --check scripts/chatgpt_brief.mjs
+          node --test scripts/no_model_brief.test.mjs scripts/chatgpt_brief.test.mjs
+          python -m py_compile scripts/send_brief_email.py
+      - name: 合并ChatGPT新稿与最新行情并生成HTML
+        run: node scripts/chatgpt_brief.mjs
+      - name: 发送新简报HTML正文及附件
+        run: python scripts/send_brief_email.py
