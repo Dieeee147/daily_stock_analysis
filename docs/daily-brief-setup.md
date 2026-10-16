@@ -27,3 +27,8 @@
 node --test scripts/no_model_brief.test.mjs覆盖来源白名单、发布时间、近似去重、否定/混合事件、未完成日线和HTML转义。Python发送脚本做语法编译。公开日志只记录数量与SMTP状态，不显示密钥、股票明细或原始报告；个性化报告不上传公开artifact。SMTP接受不等于收件方已打开。
 
 本页仅针对个人Fork试用，未同步上游英文全量指南；原项目其他API、Web、本地流程保持原实现。
+
+
+## ChatGPT检索与分析测试
+
+新增独立的 `chatgpt-brief-delivery.yml`，接收 ChatGPT 阅读公开原文后生成的中文新闻摘要及分析。协议与验证步骤见 [chatgpt-brief-bridge.md](chatgpt-brief-bridge.md)。无需新增模型API密钥；原有AI及无模型路径保留。此阶段不替换原08:00发送任务。新闻及机构观点由ChatGPT整理；行情和自选股公告线索仍由脚本采集，不能把整个报告称为逐条人工核验。公开仓库不保存个人自选股组合或收件地址。
