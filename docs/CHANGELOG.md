@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 > For user-friendly release highlights, see the [GitHub Releases](https://github.com/ZhuLinsen/daily_stock_analysis/releases) page.
 
 ## [Unreleased]
+- [新功能] 增加ChatGPT公开新闻摘要与分析稿的HTML邮件桥接，保留私有自选股配置，校验稿件时效并记录SMTP接收结果。
 
 - [新功能] 此Fork新增无模型晨报试用，复用新闻检索、QQ邮件配置与现有HTML设计，BRIEF_MODE=ai可恢复原流程。
 - [改进] 无模型报告明确展示原文摘录、来源与日期、规则分类和数据覆盖，缺失不补造；不注入模型密钥、不上传个性化公开artifact。
