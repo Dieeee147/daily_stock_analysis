@@ -1,4 +1,4 @@
-"""Send the no-model HTML report using existing EMAIL_* settings."""
+"""Send an HTML report using existing EMAIL_* settings."""
 import json
 import os
 import re
@@ -20,7 +20,7 @@ def main():
     report = json.loads((report_dir / "daily-brief.json").read_text(encoding="utf-8"))
     html = (report_dir / "daily-brief.html").read_text(encoding="utf-8")
     msg = EmailMessage()
-    msg["Subject"] = "A股每日简报｜" + report["date"] + "｜无模型试用"
+    msg["Subject"] = "A股每日简报｜" + report["date"] + ("｜ChatGPT分析测试" if report.get("editorial") else "｜无模型试用")
     msg["From"] = sender
     msg["To"] = ", ".join(receivers)
     msg["Date"] = format_datetime(datetime.now(ZoneInfo("Asia/Shanghai")))
@@ -28,13 +28,13 @@ def main():
     msg.set_content((report_dir / "daily-brief.txt").read_text(encoding="utf-8"))
     msg.add_alternative(html, subtype="html")
     msg.add_attachment(html.encode("utf-8"), maintype="text", subtype="html",
-                       filename="ashare_brief_" + report["date"] + "_no_model.html")
+                       filename="ashare_brief_" + report["date"] + ("_chatgpt.html" if report.get("editorial") else "_no_model.html"))
     with smtplib.SMTP_SSL(os.getenv("SMTP_HOST", "smtp.qq.com"), int(os.getenv("SMTP_PORT", "465")),
                           context=ssl.create_default_context(), timeout=30) as smtp:
         smtp.login(sender, password)
         if smtp.send_message(msg):
             raise RuntimeError("Recipient refused; do not resend automatically")
-    print("SMTP_ACCEPTED: 无模型简报HTML正文及附件已被SMTP接受。")
+    print("SMTP_ACCEPTED: 简报HTML正文及附件已被SMTP接受。")
     if os.getenv("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as out:
             out.write("\n\nHTML正文及附件已被SMTP接受；是否进入收件箱需收件方核实。\n")
