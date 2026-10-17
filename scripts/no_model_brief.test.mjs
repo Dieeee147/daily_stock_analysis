@@ -43,14 +43,10 @@ function watchFixture(){
  const item={title:'示例股份披露回购提议',summary:'董事长提出回购，尚待审议。',analysis:'提议不能等同于已经实施。',stance:'利好',url:'https://www.stcn.com/a',sourceLabel:'测试来源',published_date:'2026-10-16'};
  return {date:'2026-10-17',generatedAt:'test',editorial:true,quality:{news:1,markets:0,analysts:0,stocks:1,english:0,noBody:0},news:[item],markets:[],analysts:[],stocks:[stock],warnings:[]};
 }
-test('watchlist table shows period changes while moving averages remain in analysis',()=>{
+test('company news remains while quote table and technical placeholders are removed',()=>{
  const html=render(watchFixture());
- for(const text of ['股票代码','股票名称','收盘参考（元）','日涨跌（%）','成交额（亿元）','成交量（万股）','换手率（%）','近20日涨跌幅（%）','近60日涨跌幅（%）','2026-10-16','12.34','-1.25','1.23','12.34','5.50','-3.20'])assert.ok(html.includes(text),text);
- assert.match(html,/<table class="stock-table"/);
- assert.ok(!html.includes('近20日区间（元）'));
- assert.ok(html.includes('MA20 12.00元'));
- assert.ok(html.includes('MA60 13.00元'));
- assert.ok(html.indexOf('MA20 12.00元')>html.indexOf('关联新闻、事实摘要与分析'));
+ for(const text of ['000001','示例股份','关联新闻、事实摘要与分析','董事长提出回购，尚待审议。','提议不能等同于已经实施。'])assert.ok(html.includes(text),text);
+ for(const text of ['stock-table','股票代码','收盘参考','近20日涨跌幅','近60日涨跌幅','MA20','MA60','12.34','行情说明：'])assert.ok(!html.includes(text),text);
 });
 test('company association requires explicit company name or bounded six digit code',()=>{
  const stock={code:'000001',name:'示例股份'};
@@ -63,13 +59,12 @@ test('associated verified news is cross referenced and duplicate lead removed',(
  assert.ok(html.includes('对应重要新闻第1条'));
  assert.ok(html.includes('提议不能等同于已经实施。'));
  assert.ok(!html.includes('补充公告检索线索（未逐条核验'));
- assert.ok(html.indexOf('关联新闻、事实摘要与分析')>html.indexOf('</tbody></table>',html.indexOf('class="stock-table"')));
+ assert.ok(!html.includes('stock-table'));
 });
-test('missing quote values and unverified future events remain explicit and escaped',()=>{
+test('unverified company leads and future event coverage remain explicit and escaped',()=>{
  const r=watchFixture();r.stocks[0]={...r.stocks[0],name:'<script>注入</script>',price:null,amount:null,volume:null,turnover:null,events:[{title:'<script>公告线索</script>',url:'https://www.stcn.com/b',published_date:'2026-10-16'}]};
  const html=render(r);
  assert.ok(!html.includes('<script>'));
- assert.ok(html.includes('待核实'));
  assert.ok(html.includes('补充公告检索线索（未逐条核验'));
  assert.ok(html.includes('未列出不能理解为近期无事件'));
 });
@@ -93,4 +88,11 @@ test('priority sections keep verified facts and explicit missing coverage',()=>{
  r.eventCalendar=[{...r.news[0],title:'已预约事件样例',summary:'预约日期可能变更。'}];
  const html=render(r);
  for(const text of ['新增风险样例','市场广度样例','已预约事件样例'])assert.ok(html.includes(text));
+});
+
+test('companies without related news or announcement leads create no filler cards',()=>{
+ const r=watchFixture();r.news=[];r.quality.news=0;r.stocks[0].note='行情抓取占位';
+ const html=render(r);
+ for(const text of ['000001','示例股份','行情抓取占位','MA20'])assert.ok(!html.includes(text),text);
+ assert.ok(html.includes('本期未取得可明确关联的重要新闻或补充公告线索'));
 });

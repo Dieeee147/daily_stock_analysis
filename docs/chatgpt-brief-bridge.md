@@ -37,7 +37,7 @@ Draft date must equal current Asia/Shanghai date; researchedAt must be at most 2
 4. SMTP acceptance does not prove inbox arrival. Report actual source gaps.
 5. If a run fails, inspect before retry; never claim delivery succeeded based solely on a queued run.
 
-The runner reuses existing market/watchlist collectors, HTML design and SMTP configuration. News and institutional views are ChatGPT-authored; watchlist quotes and additional announcement leads remain script-collected and are explicitly labeled. An absent company link does not justify invented company-level analysis.
+The runner reuses existing market/watchlist collectors, HTML design and SMTP configuration. News and institutional views are ChatGPT-authored; additional watchlist announcement leads remain script-collected and are explicitly labeled. An absent company link does not justify invented company-level analysis.
 
 ## Current experiment boundary
 This bridge is additive. The existing 08:00 no-model schedule is retained until the cloud ChatGPT task and email path have been tested. An interactive run alone does not validate unattended scheduling. Existing model API settings are retained for restoration.
@@ -49,4 +49,4 @@ Version 1 also accepts optional `riskUpdates`, `marketBreadth`, and `eventCalend
 
 Risk entries distinguish newly disclosed changes from older continuing risks; cross-reference matching main-news items instead of repeating full facts. Breadth entries specify exchange/sample universe, actual trading date, advancing/declining/flat and limit counts, turnover and change; do not mix incompatible universes. A missing 20-session average must remain missing. Calendar entries specify event date and timezone in the title or summary, original announcement date in published_date, status (announced/scheduled/changeable/unverified), source and verification cutoff. A proposed action or opening of an execution window does not prove implementation. Future event dates are permitted in summary, but future publication dates are not.
 
-The watchlist collector computes price changes over 20/60 trading bars from at least 21/61 aligned forward-adjusted closing prices. MA20/MA60 and closing-price deviations appear in company analysis, outside the quote table. These are historical descriptions, not forecasts or personal account returns. Individual quote dates and adjustment coverage must align before showing the metrics.
+The current private renderer omits the watchlist quote table and technical-metric placeholders. It retains explicitly associated company news, factual analysis and clearly labeled supplementary announcement leads, with references to main-news sources. Companies without related items do not create filler cards. Collector interfaces remain compatible; private quote data and watchlist groupings must not be published in the editorial payload.

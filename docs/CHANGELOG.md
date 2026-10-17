@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 > For user-friendly release highlights, see the [GitHub Releases](https://github.com/ZhuLinsen/daily_stock_analysis/releases) page.
 
 ## [Unreleased]
+
+- [改进] 晨报删除自选股行情总表，关注公司仅保留明确关联的新闻、事实分析及单独标注的公告线索，省略纯行情和无内容占位卡片。
 - [改进] 自选股主表使用20/60日期间涨跌幅，MA20/MA60及偏离率移至分析区；同日、前复权及样本不足边界明确留缺。
 - [新功能] ChatGPT桥接支持已核实风险进展、市场广度与成交、未来事件日历三类优先内容，沿用来源校验；未取得资料时明确提示覆盖缺口。
 - [改进] 自选股行情合并为含单位与交易日的表格，20/60日前复权价格区间保持原口径；公司关联新闻单列事实与分析，重复来源交叉引用，未来事件未核实状态明确展示。
