@@ -51,7 +51,7 @@ function sourceName(url){
  const d=Object.keys(names).find(d=>host===d||host.endsWith('.'+d));return d?names[d]:host;
 }
 const cnTitle=x=>/[\u3400-\u9fff]/u.test(clean(x.title))?Array.from(clean(x.title)).slice(0,20).join('')+(Array.from(clean(x.title)).length>20?'…':''):sourceName(x.url)+'｜英文原文（无自动翻译）';
-export export function historyMetrics(rows){
+export function historyMetrics(rows){
  const ordered=[...rows].filter(r=>Array.isArray(r)&&/^\d{4}-\d{2}-\d{2}$/.test(r[0])).sort((a,b)=>a[0].localeCompare(b[0]));
  if(new Set(ordered.map(r=>r[0])).size!==ordered.length)throw new Error('DUPLICATE_HISTORY_DATE');
  const closes=ordered.map(r=>number(r[2])),last=closes.at(-1);
@@ -63,7 +63,7 @@ export export function historyMetrics(rows){
   return60:valid(61)?(last/closes.at(-61)-1)*100:null,ma20,ma60,
   bias20:ma20&&last>0?(last/ma20-1)*100:null,bias60:ma60&&last>0?(last/ma60-1)*100:null};
 }
-async function stockQuote(code,now){
+export async function stockQuote(code,now){
  const symbol=(/^[69]/.test(code)?'sh':'sz')+code;
  const x={code,name:code,price:null,change:null,date:null,volume:null,amount:null,turnover:null,range20:null,range60:null,return20:null,return60:null,ma20:null,ma60:null,bias20:null,bias60:null,metricDate:null,source:'https://gu.qq.com/'+symbol};
  try{const r=await request('https://qt.gtimg.cn/q='+symbol);const fields=new TextDecoder('gb18030').decode(await r.arrayBuffer()).split('"')[1]?.split('~')||[];
