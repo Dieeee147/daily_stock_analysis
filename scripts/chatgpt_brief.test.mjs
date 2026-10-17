@@ -31,3 +31,21 @@ test('validate and merge optional verified priority sections without mutating so
  assert.throws(()=>validate({...d,eventCalendar:'bad'},now),/INVALID_SUPPLEMENT/);
  assert.throws(()=>validate({...d,riskUpdates:[{...extra,url:'https://evil.example/a'}]},now),/INVALID_SOURCE_OR_STANCE/);
 });
+
+test('new macro fields share validation and survive merge without forcing news padding',()=>{
+ const keys=["dailyHighlights","policyUpdates","macroEconomy","liquidityFiscal","externalRisks","industryPolicy","riskUpdates","marketBreadth","eventCalendar"];
+ const d={...draft,news:[]};for(const key of keys)d[key]=[{...article,title:key}];
+ validate(d,now);const merged=merge({stocks:[],quality:{}},d);
+ for(const key of keys){
+  assert.equal(merged[key][0].title,key);
+  assert.throws(()=>validate({...d,[key]:[{...article,url:'https://evil.example/a'}]},now),/INVALID_SOURCE_OR_STANCE/);
+  assert.throws(()=>validate({...d,[key]:'invalid'},now),/INVALID_SUPPLEMENT/);
+  assert.throws(()=>validate({...d,[key]:[{...article,summary:'private@example.com'}]},now),/PERSONAL_EMAIL_IN_PUBLIC_DRAFT/);
+ }
+ assert.throws(()=>validate({...d,dailyHighlights:Array(4).fill(article)},now),/INVALID_SUPPLEMENT/);
+});
+
+test('macro sources include official central banks while rejecting lookalike hosts',()=>{
+ assert.doesNotThrow(()=>validate({...draft,externalRisks:[{...article,url:'https://www.federalreserve.gov/newsevents/pressreleases/sample.htm'}]},now));
+ assert.throws(()=>validate({...draft,externalRisks:[{...article,url:'https://federalreserve.gov.evil.example/a'}]},now),/INVALID_SOURCE_OR_STANCE/);
+});

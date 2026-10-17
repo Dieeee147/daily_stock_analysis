@@ -94,5 +94,40 @@ test('companies without related news or announcement leads create no filler card
  const r=watchFixture();r.news=[];r.quality.news=0;r.stocks[0].note='行情抓取占位';
  const html=render(r);
  for(const text of ['000001','示例股份','行情抓取占位','MA20'])assert.ok(!html.includes(text),text);
- assert.ok(html.includes('本期未取得可明确关联的重要新闻或补充公告线索'));
+ assert.ok(!html.includes('关注公司关联信息'));
+ assert.ok(html.includes('未展示不代表没有风险或没有事件'));
+});
+
+test('macro sections follow priority order, omit empty modules and reference repeated sources',()=>{
+ const r=watchFixture(),names=[
+  ['dailyHighlights','今日宏观与政策三项变化'],['policyUpdates','政策变化与落地进度'],
+  ['macroEconomy','国内经济温度'],['liquidityFiscal','货币、信用与财政'],
+  ['externalRisks','中美及外部风险'],['industryPolicy','产业政策与经营验证'],
+  ['riskUpdates','新增风险与公告进展'],['marketBreadth','A股市场广度与成交活跃度']
+ ];
+ for(const [i,[key,label]] of names.entries())r[key]=[{...r.news[0],title:label+'样例',url:'https://www.stcn.com/macro/'+i,summary:'独立事实'+i}];
+ r.policyUpdates=[{...r.dailyHighlights[0],title:'同一政策不同标题'}];
+ r.eventCalendar=[{...r.news[0],title:'日历样例',url:'https://www.stcn.com/calendar'}];
+ r.analysts=[{...r.news[0],title:'机构样例',url:'https://www.stcn.com/bank'}];
+ const html=render(r),headings=[...html.matchAll(/<h2[^>]*>(.*?)<\/h2>/g)].map(m=>m[1]);
+ const expected=[...names.map(x=>x[1]),'重要新闻','机构与具名分析师观点','关注公司关联信息','未来5—10个交易日事件日历','数据覆盖与核实说明'];
+ assert.equal(headings.length,expected.length);
+ expected.forEach((label,i)=>assert.ok(headings[i].startsWith(String(i+1).padStart(2,'0')+' · '+label),headings[i]));
+ assert.equal(html.split('事实摘要：独立事实0').length-1,1);
+ assert.ok(html.includes('同一来源已见「今日宏观与政策三项变化第1条」'));
+ assert.ok(!headings.some(h=>h.includes('隔夜国际市场')));
+ const empty=watchFixture();empty.news=[];empty.stocks=[];empty.quality.news=0;
+ const emptyHtml=render(empty);
+ assert.equal([...emptyHtml.matchAll(/<h2[^>]*>/g)].length,1);
+ assert.ok(emptyHtml.includes('01 · 数据覆盖与核实说明'));
+});
+test('company association also covers explicitly named policy events outside main news',()=>{
+ const r=watchFixture();r.policyUpdates=[{...r.news[0],url:'https://www.stcn.com/policy'}];r.news=[];r.quality.news=0;
+ const html=render(r);
+ assert.ok(html.includes('对应政策变化与落地进度第1条'));
+ assert.ok(html.includes('000001 示例股份'));
+});
+test('international market table excludes missing rows but keeps valid zero values',()=>{
+ const r=watchFixture();r.markets=[{name:'有效零值',value:0,unit:'%',change:0,changeUnit:'基点',date:'2026-10-16',source:'https://www.stcn.com/a'},{name:'缺失数据',value:null},{name:'非有限',value:NaN}];
+ const html=render(r);assert.ok(html.includes('有效零值'));assert.ok(!html.includes('缺失数据'));assert.ok(!html.includes('非有限'));assert.ok(html.includes('隔夜国际市场与宏观指标'));
 });
