@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {allowed,MEDIA,classify,recent,dedupe,completedBars,excerpt,render} from './no_model_brief.mjs';
+import {allowed,MEDIA,classify,recent,dedupe,completedBars,excerpt,render,relatedNews} from './no_model_brief.mjs';
 test('reject lookalike hosts, forums and unsafe schemes',()=>{
  assert.equal(allowed('https://www.stcn.com/article/1',MEDIA),true);
  for(const u of ['https://stcn.com.evil.example/a','https://evil.example/stcn.com','javascript:alert(1)','https://www.stcn.com/forum/a'])assert.equal(allowed(u,MEDIA),false);
@@ -36,4 +36,37 @@ test('render escapes untrusted content and discloses coverage gaps',()=>{
  assert.ok(!html.includes('<script>'));
  assert.ok(html.includes('未取得原文正文'));
  assert.ok(html.includes('有效指标不足10项'));
+});
+
+function watchFixture(){
+ const stock={code:'000001',name:'示例股份',price:12.34,change:-1.25,date:'2026-10-16',amount:123400000,volume:123400,turnover:2.5,range20:'10—15',range60:'8—18',source:'https://gu.qq.com/sz000001',events:[]};
+ const item={title:'示例股份披露回购提议',summary:'董事长提出回购，尚待审议。',analysis:'提议不能等同于已经实施。',stance:'利好',url:'https://www.stcn.com/a',sourceLabel:'测试来源',published_date:'2026-10-16'};
+ return {date:'2026-10-17',generatedAt:'test',editorial:true,quality:{news:1,markets:0,analysts:0,stocks:1,english:0,noBody:0},news:[item],markets:[],analysts:[],stocks:[stock],warnings:[]};
+}
+test('watchlist table preserves range semantics, dates and quote units',()=>{
+ const html=render(watchFixture());
+ for(const text of ['股票代码','股票名称','收盘参考（元）','日涨跌（%）','成交额（亿元）','成交量（万股）','换手率（%）','近20日区间（元）','近60日区间（元）','2026-10-16','12.34','-1.25','1.23','12.34','10—15','8—18'])assert.ok(html.includes(text),text);
+ assert.match(html,/<table class="stock-table"/);
+ assert.ok(html.includes('前复权日线的最低价—最高价区间'));
+});
+test('company association requires explicit company name or bounded six digit code',()=>{
+ const stock={code:'000001',name:'示例股份'};
+ assert.equal(relatedNews(stock,[{title:'医药行业政策发布'},{title:'编号1000001的其他新闻'}]).length,0);
+ assert.equal(relatedNews(stock,[{title:'000001发布公告'},{title:'示例股份发布公告'}]).length,2);
+});
+test('associated verified news is cross referenced and duplicate lead removed',()=>{
+ const r=watchFixture();r.stocks[0].events=[{...r.news[0],url:r.news[0].url+'?utm_source=test'}];
+ const html=render(r);
+ assert.ok(html.includes('对应重要新闻第1条'));
+ assert.ok(html.includes('提议不能等同于已经实施。'));
+ assert.ok(!html.includes('补充公告检索线索（未逐条核验'));
+ assert.ok(html.indexOf('关联新闻、事实摘要与分析')>html.indexOf('</tbody></table>',html.indexOf('class="stock-table"')));
+});
+test('missing quote values and unverified future events remain explicit and escaped',()=>{
+ const r=watchFixture();r.stocks[0]={...r.stocks[0],name:'<script>注入</script>',price:null,amount:null,volume:null,turnover:null,events:[{title:'<script>公告线索</script>',url:'https://www.stcn.com/b',published_date:'2026-10-16'}]};
+ const html=render(r);
+ assert.ok(!html.includes('<script>'));
+ assert.ok(html.includes('待核实'));
+ assert.ok(html.includes('补充公告检索线索（未逐条核验'));
+ assert.ok(html.includes('未列出不能理解为近期无事件'));
 });
