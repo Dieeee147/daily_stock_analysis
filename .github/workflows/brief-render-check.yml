@@ -1,0 +1,30 @@
+name: Brief renderer checks
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/no_model_brief.mjs'
+      - 'scripts/no_model_brief.test.mjs'
+      - 'scripts/chatgpt_brief.mjs'
+      - 'scripts/chatgpt_brief.test.mjs'
+      - '.github/workflows/brief-render-check.yml'
+  pull_request:
+    paths:
+      - 'scripts/*brief*.mjs'
+      - '.github/workflows/brief-render-check.yml'
+permissions:
+  contents: read
+jobs:
+  offline-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check syntax and offline rendering contracts
+        run: |
+          node --check scripts/no_model_brief.mjs
+          node --check scripts/chatgpt_brief.mjs
+          node --test scripts/no_model_brief.test.mjs scripts/chatgpt_brief.test.mjs
