@@ -104,6 +104,14 @@ export async function collect(now=new Date()){
  return{generatedAt:now.toISOString(),date:dateKey(now),news,markets,analysts,stocks,warnings,mode:'无模型原文摘录试用',quality:{news:news.length,markets:markets.filter(x=>x.value!==null).length,analysts:analysts.length,stocks:stocks.filter(x=>x.price!==null).length,english:news.filter(x=>!/[\u3400-\u9fff]/u.test(x.title)).length,noBody:news.filter(x=>!x.raw_content).length}};
 }
 const f=(n,d=2)=>n===null||n===undefined?'待核实':Number(n).toLocaleString('zh-CN',{minimumFractionDigits:d,maximumFractionDigits:d});
+export function relatedNews(stock,news){
+ const code=String(stock.code||''),name=clean(stock.name||'');
+ const codePattern=/^\d{6}$/.test(code)?new RegExp('(^|[^0-9])'+code+'([^0-9]|$)'):null;
+ return news.map((item,index)=>({item,index:index+1})).filter(({item})=>{
+  const text=clean((item.title||'')+' '+(item.summary||''));
+  return (codePattern&&codePattern.test(text))||(name.length>=3&&name!==code&&text.includes(name));
+ });
+}
 export function render(report,css=''){
  const styles={};for(const m of css.matchAll(/([^{}]+)\{([^{}]+)\}/g))for(const s of m[1].split(','))if(/^(?:[a-z]+|\.[\w-]+)$/.test(s.trim()))styles[s.trim()]=m[2];
  const el=(tag,cls,body)=>'<'+tag+(cls?' class="'+cls+'"':'')+' style="'+esc((styles[tag]||'')+cls.split(' ').map(c=>styles['.'+c]||'').join(''))+'">'+body+'</'+tag+'>';
@@ -115,10 +123,32 @@ export function render(report,css=''){
  const rows=report.markets.map(x=>'<tr><td>'+esc(x.name)+'</td><td>'+f(x.value)+'</td><td>'+esc(x.unit)+'</td><td>'+(x.change===null?'—':f(x.change)+' '+esc(x.changeUnit))+'</td><td>'+esc(x.date||'未取得')+'</td><td>'+link(x.source)+(x.note?'<br>'+esc(x.note):'')+'</td></tr>').join('');
  const table=el('div','scroll','<table cellpadding="8" cellspacing="0" style="border-collapse:collapse;width:100%;font-size:13px"><thead><tr>'+['指标','数值','单位','变化','数据日期','来源'].map(h=>'<th style="background:#edf3f5;text-align:left">'+h+'</th>').join('')+'</tr></thead><tbody>'+rows+'</tbody></table>');
  const newsIndex=new Map(report.news.map((x,i)=>[canonical(x.url),i+1]));
- const stocks=report.stocks.map(x=>el('div','card',el('h3','',esc(x.code+' '+x.name))+el('p','',esc('收盘参考 '+f(x.price)+'元｜日涨跌 '+(x.change===null?'待核实':f(x.change)+'%')+'｜行情日期 '+(x.date||'待核实')))+el('p','',esc('成交额 '+(x.amount===null?'待核实':f(x.amount/1e8)+'亿元')+'｜成交量 '+(x.volume===null?'待核实':f(x.volume/1e4)+'万股')+'｜换手率 '+(x.turnover===null?'待核实':f(x.turnover)+'%')))+el('p','',esc('近20日区间 '+(x.range20||'待核实')+'元｜近60日区间 '+(x.range60||'待核实')+'元（前复权）'))+el('p','small',esc(x.note||'仅列事实数据，不形成涨跌预测。')+' '+link(x.source,'腾讯财经行情'))+(x.events.length?x.events.map(y=>newsIndex.has(canonical(y.url))?el('p','small','同一事项已并入重要新闻第'+newsIndex.get(canonical(y.url))+'条，'+link(y.url,'查看原文')):article(y,0)).join(''):el('p','small','本期未检索到符合来源与日期筛选的公告；不表示不存在其他披露。')))).join('');
+ const stockHeaders=['股票代码','股票名称','收盘参考（元）','日涨跌（%）','成交额（亿元）','成交量（万股）','换手率（%）','近20日区间（元）','近60日区间（元）'];
+ const stockRows=report.stocks.map(x=>'<tr>'+[
+  link(x.source,x.code),
+  esc(x.name)+'<br><small style="color:#627581">'+esc(x.date||'日期待核实')+'</small>',
+  f(x.price),f(x.change),f(x.amount===null||x.amount===undefined?null:x.amount/1e8),
+  f(x.volume===null||x.volume===undefined?null:x.volume/1e4),f(x.turnover),
+  esc(x.range20||'待核实'),esc(x.range60||'待核实')
+ ].map(cell=>'<td style="padding:8px 7px;border-bottom:1px solid #e3eaed;vertical-align:top">'+cell+'</td>').join('')+'</tr>').join('');
+ const stockTable='<div class="scroll" style="overflow-x:auto;width:100%"><table class="stock-table" aria-label="自选股行情汇总" cellpadding="0" cellspacing="0" style="border-collapse:collapse;width:100%;min-width:920px;font-size:12px"><thead><tr>'+stockHeaders.map(h=>'<th scope="col" style="padding:8px 7px;background:#edf3f5;text-align:left">'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+stockRows+'</tbody></table></div>';
+ const associationCards=report.stocks.map(x=>{
+  const related=relatedNews(x,report.news),covered=new Set(related.map(({item})=>canonical(item.url)));
+  const leads=dedupe(x.events||[]).filter(y=>!covered.has(canonical(y.url)));
+  if(!related.length&&!leads.length&&!x.note)return '';
+  const verified=related.map(({item,index})=>el('div','',el('p','meta','对应重要新闻第'+index+'条｜定性：'+esc(item.stance||classify(item.title))+'｜'+link(item.url,'原文'))+
+   (item.summary?el('p','',esc('事实摘要：'+item.summary))+el('p','',esc('分析与核实边界：'+item.analysis)):el('p','small','仅取得新闻标题或短摘录，未形成公司层面的语义分析。')))).join('');
+  const supplemental=leads.length?el('p','meta','补充公告检索线索（未逐条核验，不代表正式公告完整清单）')+leads.map(y=>newsIndex.has(canonical(y.url))?el('p','small','同一来源见重要新闻第'+newsIndex.get(canonical(y.url))+'条；具体公司关联尚待核实。 '+link(y.url,'原文')):article(y,0)).join(''):'';
+  return el('div','card',el('h3','',esc(x.code+' '+x.name))+verified+supplemental+(x.note?el('p','small',esc('行情说明：'+x.note)):''));
+ }).filter(Boolean).join('');
+ const stocks=stockTable+el('p','small','股票名称下方为对应交易日；点击股票代码查看行情来源。成交量单位为万股，成交额为亿元。20/60日为前复权日线的最低价—最高价区间，尚未改为涨跌幅或均线。手机可横向查看表格。')+
+  el('h3','','关联新闻、事实摘要与分析')+el('p','small','仅将正文或标题明确提及公司名称、代码的重要新闻直接关联；同行业或题材相近不作为关联依据。重复来源不再次列为公告线索。')+
+  (associationCards||el('p','small','本期未取得可明确关联的重要新闻或补充公告线索；这不代表公司没有披露。'))+
+  el('p','small','事件核实状态：下一次财报预约披露日、股东大会、回购或减持期限等未来事项尚未逐家公司建立可核实日历。未列出不能理解为近期无事件，已预约日期也可能变更。');
+
  const section=(title,body)=>el('div','section',el('h2','',title)+body);
  const note=report.editorial?'ChatGPT检索与分析测试版：新闻和机构观点由ChatGPT阅读来源后整理，分析仅解释已披露事实和核实边界，不预测股价。行情由发送端采集；自选股公告补充仍为规则检索，未逐条完成人工核验。定时运行可用模型由平台分配，不保证与当前对话使用完全相同的模型。':'无模型试用版：不调用任何模型API。采用来源白名单、发布时间筛选、短原文摘录和标题事件规则分类；不做语义摘要、英文翻译或涨跌预测。新闻观察窗为最近72小时，机构观点为最近90天，旧观点保留原始日期。按来源可得性和标题规则排序，不代表热度排名。';
- return '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>A股投资简报｜'+report.date+'</title><style>'+css+'</style></head><body>'+el('div','page',el('div','hero',el('div','eyebrow','A股每日简报 · '+report.date)+'<h1 style="margin:7px 0;font-size:30px;color:#fff">A股投资简报</h1>'+el('p','',esc(report.date+'｜北京时间｜'+(report.editorial?'ChatGPT检索与分析测试':'无模型原文摘录试用'))))+el('div','body',el('div','note',esc(note))+el('p','small',esc(status))+section('01 · 十条重要新闻',news)+section('02 · 隔夜国际市场与宏观指标',el('p','sub','第三方日线参考；按当地保守收盘时间排除当日未完成行情。变化为相邻两条已完成日线之差；收益率用基点，其余用百分比。汇率采用最近完整UTC日线。')+(q.markets<10?el('p','note','有效指标不足10项；缺失项保留，不能视为完整国际市场简报。'):'')+table)+section('03 · 机构与具名分析师观点',el('p','sub',report.editorial?'以下为公开机构文章的中文归纳，保留原始发布日期；机构预测不等于已公布数据，不据此预测自选股涨跌。':'仅提供检索到的原文线索或短摘录，不自动归纳观点，也不推断对自选股的影响。')+(report.analysts.map((x,i)=>article(x,i,true)).join('')||el('p','note','本期未找到符合要求且发布日期可核实的机构观点，不以匿名评论补充。')))+section('04 · 关注股票与公告',el('p','sub','行情使用最近已完成交易日，区间为前复权日线。公告分类仅匹配标题词语，混合事项及未匹配项按中性处理。')+stocks)+section('05 · 数据覆盖与限制',el('p','',esc(status))+el('p','',esc(report.warnings.length?report.warnings.join('；'):'本轮网络请求未记录异常；检索覆盖不等于披露完整性。'))+el('p','',report.editorial?'新闻和机构观点已由ChatGPT按原文整理；自选股行情及公告线索由脚本补充。未核实的公司关联不作推断；行情第三方数据不代替交易所披露。部分原文有访问限制，应以可打开的原始材料核实。':'本版不能判断“显著超预期”、自动区分回购提议与执行细节、准确合并不同标题下同一事件，或归纳英文研报。只提供短原文摘录与来源链接。'))+el('div','footer','<b>'+DISCLAIMER+'</b><br>生成时间：'+esc(report.generatedAt)+'（UTC）；报告日期按北京时间。')) )+'</body></html>';
+ return '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>A股投资简报｜'+report.date+'</title><style>'+css+'</style></head><body>'+el('div','page',el('div','hero',el('div','eyebrow','A股每日简报 · '+report.date)+'<h1 style="margin:7px 0;font-size:30px;color:#fff">A股投资简报</h1>'+el('p','',esc(report.date+'｜北京时间｜'+(report.editorial?'ChatGPT检索与分析测试':'无模型原文摘录试用'))))+el('div','body',el('div','note',esc(note))+el('p','small',esc(status))+section('01 · 十条重要新闻',news)+section('02 · 隔夜国际市场与宏观指标',el('p','sub','第三方日线参考；按当地保守收盘时间排除当日未完成行情。变化为相邻两条已完成日线之差；收益率用基点，其余用百分比。汇率采用最近完整UTC日线。')+(q.markets<10?el('p','note','有效指标不足10项；缺失项保留，不能视为完整国际市场简报。'):'')+table)+section('03 · 机构与具名分析师观点',el('p','sub',report.editorial?'以下为公开机构文章的中文归纳，保留原始发布日期；机构预测不等于已公布数据，不据此预测自选股涨跌。':'仅提供检索到的原文线索或短摘录，不自动归纳观点，也不推断对自选股的影响。')+(report.analysts.map((x,i)=>article(x,i,true)).join('')||el('p','note','本期未找到符合要求且发布日期可核实的机构观点，不以匿名评论补充。')))+section('04 · 关注股票与公告',el('p','sub','行情使用最近已完成交易日，区间为前复权日线。行情统一列成表格，关联新闻与补充公告线索单独整理；未取得的数值保留“待核实”。')+stocks)+section('05 · 数据覆盖与限制',el('p','',esc(status))+el('p','',esc(report.warnings.length?report.warnings.join('；'):'本轮网络请求未记录异常；检索覆盖不等于披露完整性。'))+el('p','',report.editorial?'新闻和机构观点已由ChatGPT按原文整理；自选股行情及公告线索由脚本补充。未核实的公司关联不作推断；行情第三方数据不代替交易所披露。部分原文有访问限制，应以可打开的原始材料核实。':'本版不能判断“显著超预期”、自动区分回购提议与执行细节、准确合并不同标题下同一事件，或归纳英文研报。只提供短原文摘录与来源链接。'))+el('div','footer','<b>'+DISCLAIMER+'</b><br>生成时间：'+esc(report.generatedAt)+'（UTC）；报告日期按北京时间。')) )+'</body></html>';
 }
 async function main(){
  const report=await collect(),css=await fs.readFile(path.join(ROOT,'no_model_brief.css'),'utf8');
