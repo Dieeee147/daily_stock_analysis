@@ -41,3 +41,12 @@ The runner reuses existing market/watchlist collectors, HTML design and SMTP con
 
 ## Current experiment boundary
 This bridge is additive. The existing 08:00 no-model schedule is retained until the cloud ChatGPT task and email path have been tested. An interactive run alone does not validate unattended scheduling. Existing model API settings are retained for restoration.
+
+
+## Optional priority sections
+
+Version 1 also accepts optional `riskUpdates`, `marketBreadth`, and `eventCalendar` arrays (0–20 articles each). Every article uses the same title/stance/sourceLabel/published_date/url/summary/analysis/extraSources fields and source, date and privacy validation as news. Public content only: do not publish a personalized watchlist grouping. The private renderer displays these sections before the main news. Absent sections show explicit verification gaps rather than invented content.
+
+Risk entries distinguish newly disclosed changes from older continuing risks; cross-reference matching main-news items instead of repeating full facts. Breadth entries specify exchange/sample universe, actual trading date, advancing/declining/flat and limit counts, turnover and change; do not mix incompatible universes. A missing 20-session average must remain missing. Calendar entries specify event date and timezone in the title or summary, original announcement date in published_date, status (announced/scheduled/changeable/unverified), source and verification cutoff. A proposed action or opening of an execution window does not prove implementation. Future event dates are permitted in summary, but future publication dates are not.
+
+The watchlist collector computes price changes over 20/60 trading bars from at least 21/61 aligned forward-adjusted closing prices. MA20/MA60 and closing-price deviations appear in company analysis, outside the quote table. These are historical descriptions, not forecasts or personal account returns. Individual quote dates and adjustment coverage must align before showing the metrics.

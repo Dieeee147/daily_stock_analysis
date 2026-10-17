@@ -6,12 +6,15 @@ export function validate(d,now=new Date()){
  if(d.version!==1||d.date!==dateKey(now)||!Number.isFinite(Date.parse(d.researchedAt))||Date.parse(d.researchedAt)>now.getTime()+60000||now.getTime()-Date.parse(d.researchedAt)>24*3600000)throw new Error('STALE_OR_INVALID_DRAFT');
  if(!Array.isArray(d.news)||d.news.length<1||d.news.length>10||!Array.isArray(d.analysts)||d.analysts.length>5)throw new Error('INVALID_SECTIONS');
  const domains=[...MEDIA,...BANKS,'apnews.com','am.gs.com','bls.gov','census.gov','imf.org','gold.org'];
- for(const x of [...d.news,...d.analysts]){
+ const supplementKeys=['riskUpdates','marketBreadth','eventCalendar'];
+ for(const key of supplementKeys)if(d[key]!==undefined&&(!Array.isArray(d[key])||d[key].length>20))throw new Error('INVALID_SUPPLEMENT');
+ const articles=[...d.news,...d.analysts,...supplementKeys.flatMap(key=>d[key]||[])];
+ for(const x of articles){
   if(!allowed(x.url,domains)||!['利好','利空','中性'].includes(x.stance))throw new Error('INVALID_SOURCE_OR_STANCE');
   for(const key of ['title','summary','analysis','sourceLabel','published_date'])if(typeof x[key]!=='string'||!x[key].trim()||x[key].length>1800)throw new Error('INVALID_ARTICLE');
   if(!Number.isFinite(Date.parse(x.published_date))||Date.parse(x.published_date)>now.getTime())throw new Error('INVALID_PUBLICATION_DATE');
  }
- for(const x of [...d.news,...d.analysts])for(const y of x.extraSources||[])if(!allowed(y.url,domains)||typeof y.label!=='string')throw new Error('INVALID_EXTRA_SOURCE');
+ for(const x of articles)for(const y of x.extraSources||[])if(!allowed(y.url,domains)||typeof y.label!=='string')throw new Error('INVALID_EXTRA_SOURCE');
  if(JSON.stringify(d).match(/[^\s"<>]+@[^\s"<>]+\.[^\s"<>]+/))throw new Error('PERSONAL_EMAIL_IN_PUBLIC_DRAFT');
  return d;
 }
@@ -19,6 +22,7 @@ export function merge(report,draft){
  const reportCopy={...report,editorial:true,date:draft.date,mode:'ChatGPT检索与分析测试'};
  reportCopy.news=draft.news.map(x=>({...x,raw_content:x.summary}));
  reportCopy.analysts=draft.analysts.map(x=>({...x,raw_content:x.summary}));
+ for(const key of ['riskUpdates','marketBreadth','eventCalendar'])reportCopy[key]=(draft[key]||[]).map(x=>({...x,raw_content:x.summary}));
  reportCopy.quality={...report.quality,news:draft.news.length,analysts:draft.analysts.length,english:0,noBody:0};
  return reportCopy;
 }

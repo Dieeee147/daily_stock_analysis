@@ -20,3 +20,14 @@ test('model summaries survive HTML rendering and preserve private stock data',()
  assert.match(html,/ChatGPT检索与分析测试/);assert.doesNotMatch(html,/本版不能判断/);
  assert.equal(report.news.length,0);
 });
+
+test('validate and merge optional verified priority sections without mutating source',()=>{
+ const extra={...article,title:'风险及事件',summary:'已披露事实。'};
+ const d={...draft,riskUpdates:[extra],marketBreadth:[extra],eventCalendar:[extra]};
+ validate(d,now);
+ const base={stocks:[],quality:{}};
+ const r=merge(base,d);
+ assert.equal(r.riskUpdates[0].summary,extra.summary);assert.equal(base.riskUpdates,undefined);
+ assert.throws(()=>validate({...d,eventCalendar:'bad'},now),/INVALID_SUPPLEMENT/);
+ assert.throws(()=>validate({...d,riskUpdates:[{...extra,url:'https://evil.example/a'}]},now),/INVALID_SOURCE_OR_STANCE/);
+});
