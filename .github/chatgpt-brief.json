@@ -1,271 +1,197 @@
 {
   "version": 1,
-  "date": "2026-11-04",
-  "researchedAt": "2026-11-04T00:21:00.000Z",
-  "news": [
-    {
-      "title": "第三批互换便利实际操作1000亿元，中标费率10个基点",
-      "stance": "利好",
-      "sourceLabel": "中国人民银行公开市场业务操作室",
-      "published_date": "2026-11-03",
-      "url": "https://www.pbc.gov.cn/",
-      "summary": "中国人民银行11月3日开展证券、基金、保险公司互换便利操作，操作金额1000亿元，采用费率招标方式，31家证券、基金公司参与投标，中标费率10个基点。",
-      "analysis": "这是从11月2日公告的“将开展”转为已成交结果；互换便利提供的是高流动性资产置换条件，不等于1000亿元已在当日全部买入股票，后续仍需看参与机构融资和权益资产配置。"
-    },
-    {
-      "title": "美国9月职位空缺为750万，主动离职人数升至340万",
-      "stance": "中性",
-      "sourceLabel": "美国劳工统计局JOLTS",
-      "published_date": "2026-11-03",
-      "url": "https://www.bls.gov/news.release/jolts.htm",
-      "summary": "美国劳工统计局公布，9月职位空缺约750万，招聘人数约540万、总离职约530万；其中主动离职升至340万，裁员和解雇约160万，整体较前月变化不大。",
-      "analysis": "职位空缺显示劳动力需求仍有韧性，但JOLTS为9月数据且可能修订；不能仅据单一月份判断美联储路径，需与11月6日非农、失业率和工资数据交叉核实。"
-    },
-    {
-      "title": "云南锗业子公司签订五年磷化铟衬底供货协议",
-      "stance": "利好",
-      "sourceLabel": "云南锗业正式公告；巨潮资讯",
-      "published_date": "2026-11-04",
-      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=002428",
-      "summary": "控股子公司云南鑫耀与AOI签订长期供货协议，预计2027至2031年每年采购18万片、合计90万片4英寸N型磷化铟衬底；2027年度合同金额1.944亿美元，折合约13.05亿元。",
-      "analysis": "五年数量为预计安排，实际价格、交付量和收入取决于后续订单及两用物项出口许可；2027年度合同金额占公司2025年营收122.46%，但该比例不等于利润贡献或已确认收入。"
-    },
-    {
-      "title": "游族网络子公司签署42.25亿元GPU采购合同",
-      "stance": "中性",
-      "sourceLabel": "游族网络公告2026-054；巨潮资讯",
-      "published_date": "2026-11-04",
-      "url": "https://static.cninfo.com.cn/finalpage/2026-11-04/1225656231.PDF",
-      "summary": "全资子公司上海游族信息技术与A公司签署GPU采购合同，含税总额42.25亿元，资金来源为自有资金、银行授信和金融租赁等组合，合同约定分批交付。",
-      "analysis": "这是采购支出而非销售订单；价格、交期和数量受上游调整及海外技术管制影响，供方在部分延期或数量不足情形下不承担违约责任，对财务指标的具体影响尚无法测算。"
-    },
-    {
-      "title": "秦港股份披露曹妃甸港区资产收购预案并于11月4日复牌",
-      "stance": "中性",
-      "sourceLabel": "秦港股份重大交易预案及复牌公告；上交所",
-      "published_date": "2026-11-04",
-      "url": "https://www.sse.com.cn/assortment/stock/list/info/company/index.shtml?COMPANY_CODE=601326",
-      "summary": "公司拟通过发行股份及支付现金购买曹妃甸实业25%、国投曹妃甸24%、华能曹妃甸28.2328%及曹妃甸煤炭6%股权，并拟向不超过35名对象募集配套资金。",
-      "analysis": "当前为预案阶段，审计、评估和交易价格尚未完成，尚需董事会再次审议、股东会及监管程序；复牌不等于交易已获批准或已经交割。"
-    },
-    {
-      "title": "美的集团累计回购1.45亿股，支付117.57亿元",
-      "stance": "利好",
-      "sourceLabel": "美的集团股份回购进展公告；巨潮资讯",
-      "published_date": "2026-11-04",
-      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=000333",
-      "summary": "截至10月31日，公司累计以集中竞价回购A股1.45亿股，占总股本1.89%，最高成交价87.71元、最低73.66元，支付117.57亿元，不含交易费用。",
-      "analysis": "这是已实施的累计回购金额和股数，不是新增利润；回购对股本和每股指标的最终影响仍取决于股份用途、注销或转让安排。"
-    },
-    {
-      "title": "新易盛11月2日至3日回购213.91万股，耗资约4亿元",
-      "stance": "利好",
-      "sourceLabel": "新易盛股份回购进展公告；巨潮资讯",
-      "published_date": "2026-11-04",
-      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=300502",
-      "summary": "公司11月2日至3日以集中竞价回购213.91万股，占总股本0.1534%，最高成交价199.75元、最低172.05元，成交金额约4亿元，不含交易费用。",
-      "analysis": "该事项属于已实施回购进展，但短期回购规模不能替代经营数据；最终股本影响需依据回购方案用途和后续处置公告。"
-    },
-    {
-      "title": "国联民生控股股东拟增持8000万元至1亿元",
-      "stance": "利好",
-      "sourceLabel": "国联民生控股股东增持计划公告；巨潮资讯",
-      "published_date": "2026-11-04",
-      "url": "https://www.cninfo.com.cn/new/disclosure/stock?orgId=qsgn0000343&stockCode=601456",
-      "summary": "控股股东无锡市国联发展集团计划通过集中竞价或其他合规方式增持公司A股，金额不低于8000万元且低于1亿元；其与一致行动人当前合计持股38.52%。",
-      "analysis": "这是未来实施的增持计划，不是已成交结果；实际金额、价格、数量和完成进度应以后续增持进展公告核实。"
-    },
-    {
-      "title": "山鹰国际实控人兼董事长因涉嫌内幕交易和短线交易被立案",
-      "stance": "利空",
-      "sourceLabel": "山鹰国际公告；证监立案字0382026008号",
-      "published_date": "2026-11-04",
-      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=600567",
-      "summary": "公司实际控制人、董事长吴明武于11月3日收到证监会立案告知书，因涉嫌内幕交易和短线交易被立案调查；公司称本次立案针对个人，与日常经营管理和业务活动无关。",
-      "analysis": "立案是已发生的监管程序，但违法事实和处罚结论尚未最终认定；后续关注调查结果、董事长履职及公司治理影响，不能把公司声明等同于监管结论。"
-    },
-    {
-      "title": "国晟科技三家光伏子公司持续停产，存在被实施其他风险警示风险",
-      "stance": "利空",
-      "sourceLabel": "国晟科技公告临2026-097；巨潮资讯",
-      "published_date": "2026-11-04",
-      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=603778",
-      "summary": "三家主要光伏子公司因订单数量急降自9月8日起停产，公告日仍未复产；若12月7日前未恢复生产，公司股票存在被上交所实施其他风险警示的风险。公司前三季度归母净亏损1.57亿元。",
-      "analysis": "停产是已发生事实，风险警示属于附条件的未来风险而非已经实施；控股股东高比例质押、冻结及司法拍卖状态进一步增加治理和控制权不确定性。"
-    }
-  ],
-  "analysts": [
-    {
-      "title": "摩根资管：三季度增长企稳但仍呈K形分化",
-      "stance": "中性",
-      "sourceLabel": "J.P. Morgan Asset Management；Marcella Chow",
-      "published_date": "2026-10-19",
-      "url": "https://am.jpmorgan.com/tw/en/asset-management/institutional/insights/market-insights/market-updates/on-the-minds-of-investors/china-3q26-gdp-stabilizing-growth-kshaped-split-persists/",
-      "summary": "全球市场策略师Marcella Chow认为，中国三季度增长由出口和科技相关产业支撑，但消费与房地产仍弱，生产端改善快于需求端；投资观点偏向AI基础设施、半导体、机器人、电池及高股息防御板块。",
-      "analysis": "该观点依据截至三季度的数据，核心假设是外需和科技链韧性延续、国内需求修复仍慢；行业偏好是机构判断，不是实际盈利或价格数据，后续需用出口量、内需、地产和企业盈利验证。"
-    }
-  ],
+  "date": "2026-11-05",
+  "researchedAt": "2026-11-05T00:38:25.883Z",
   "dailyHighlights": [
     {
-      "title": "第三批互换便利从公告安排转为实际成交",
+      "title": "股票回购增持再贷款利率下调至1%，银行额度申请已超过2000亿元",
       "stance": "利好",
-      "sourceLabel": "中国人民银行",
-      "published_date": "2026-11-03",
-      "url": "https://www.pbc.gov.cn/",
-      "summary": "实际操作1000亿元，31家证券、基金公司参与，中标费率10个基点。",
-      "analysis": "相比此前“申请额度超过1000亿元”，本次新增信息是实际操作金额和成交费率；下一步验证参与机构融资规模、权益配置节奏和工具余额变化。"
-    },
-    {
-      "title": "美国职位空缺保持在750万附近，主动离职上升",
-      "stance": "中性",
-      "sourceLabel": "美国劳工统计局",
-      "published_date": "2026-11-03",
-      "url": "https://www.bls.gov/news.release/jolts.htm",
-      "summary": "9月职位空缺750万，招聘540万，总离职530万，主动离职340万。",
-      "analysis": "劳动力需求没有明显骤降，但数据滞后一个月；下一步以11月6日10月就业报告及后续修订检验。"
-    },
-    {
-      "title": "公司风险端新增立案与持续停产两项正式披露",
-      "stance": "利空",
-      "sourceLabel": "山鹰国际、国晟科技公告",
+      "sourceLabel": "上海证券报·中国证券网转述中国人民银行",
       "published_date": "2026-11-04",
-      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=600567",
-      "summary": "山鹰国际实控人兼董事长被立案；国晟科技三家光伏子公司仍处停产状态。",
-      "analysis": "前者尚待调查结论，后者已有12月7日复产验证节点；两项风险性质不同，不应将立案等同处罚，也不应将复产计划等同已经复产。",
-      "extraSources": [
-        {
-          "label": "国晟科技公告入口",
-          "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=603778"
-        }
-      ]
-    }
-  ],
-  "policyUpdates": [
+      "url": "https://www.cnstock.com/commonDetail/823622",
+      "summary": "中国人民银行宣布自11月4日起将股票回购增持再贷款利率下调0.25个百分点至1%，支持对象扩至21家全国性银行和5家系统重要性城商行，支持比例100%、期限1年并可展期；11月2日座谈会后银行报送的额度申请超过2000亿元。",
+      "analysis": "利率下降和额度保障降低了合格回购、增持贷款的资金成本，但再贷款额度申请不等于上市公司已获得贷款，也不等于资金已完成股票买入；银行仍需自主授信并合理加点。"
+    },
     {
-      "title": "互换便利第三批操作结果公布",
-      "stance": "利好",
-      "sourceLabel": "中国人民银行公开市场业务操作室",
-      "published_date": "2026-11-03",
-      "url": "https://www.pbc.gov.cn/",
-      "summary": "操作金额1000亿元，31家机构参与，费率招标中标费率10个基点。",
-      "analysis": "操作结果确认政策已落地，但工具是资产互换而非财政拨款，实际权益资产增配仍由参与机构自主决定。"
-    }
-  ],
-  "liquidityFiscal": [
-    {
-      "title": "第三批互换便利形成1000亿元实际操作量",
+      "title": "11月4日A股放量反弹，科创综指涨9.90%",
       "stance": "中性",
-      "sourceLabel": "中国人民银行",
-      "published_date": "2026-11-03",
-      "url": "https://www.pbc.gov.cn/",
-      "summary": "本次1000亿元操作规模接近此前两批合计1050亿元，参与机构为31家。",
-      "analysis": "操作量不等于基础货币净投放，也不等于股票市场当日净流入；需结合后续质押融资、机构仓位和央行资产负债表观察传导。"
+      "sourceLabel": "上海证券报·中国证券网，祁豆豆",
+      "published_date": "2026-11-04",
+      "url": "https://www.cnstock.com/commonDetail/823835",
+      "summary": "11月4日上证指数收于3686.17点、上涨2.16%，深证成指上涨4.22%，创业板指上涨6.40%，科创50上涨9.92%；沪深北三市成交额约2.05万亿元，较前一交易日增加约3368亿元，全市场超过4600只股票上涨。",
+      "analysis": "当日上涨范围和成交活跃度同步扩大，科技板块贡献突出；这是单日已发生的市场数据，不能据此推断持续性，后续应核验成交额能否维持及上涨家数是否继续扩散。"
+    },
+    {
+      "title": "五部门发布全面节约战略行动方案，提出2030年主要目标",
+      "stance": "中性",
+      "sourceLabel": "国家发展改革委等五部门，发改环资〔2026〕1424号",
+      "published_date": "2026-11-04",
+      "url": "https://www.ndrc.gov.cn/xxgk/zcfb/tz/202611/t20261103_1408504.html",
+      "summary": "国家发展改革委、工业和信息化部、自然资源部、水利部、国管局联合印发《实施全面节约战略行动方案》，从能源、水、粮食、土地、矿产、原材料和全民节约等方面部署任务，并提出到2030年的主要目标。",
+      "analysis": "这是正式文件发布，适用范围覆盖资源节约和循环利用多个环节；文件要求地方结合实际落实，但政策发布不等于专项资金已经下达，也不等于任何上市公司已经取得订单。"
+    }
+  ],
+  "macroEconomy": [
+    {
+      "title": "10月下旬50种重要生产资料中17种上涨、28种下降",
+      "stance": "中性",
+      "sourceLabel": "国家统计局",
+      "published_date": "2026-11-04",
+      "url": "https://www.stats.gov.cn/xxgk/sjfb/zxfb2020/202611/t20261103_1965738.html",
+      "summary": "国家统计局监测显示，10月下旬较中旬，50种重要生产资料中17种价格上涨、28种下降、5种持平。液化天然气上涨10.9%，铝锭上涨0.9%；磷酸铁锂下降3.0%，生猪下降5.1%，冰醋酸下降6.7%。",
+      "analysis": "该指标是全国流通领域批发和销售价格，不等同于工业出厂价格或企业实际采购价；不同品种方向分化，应结合后续PPI、库存和企业采购数据判断成本传导。"
+    },
+    {
+      "title": "美国9月贸易逆差降至1050亿美元，出口和进口均增长",
+      "stance": "中性",
+      "sourceLabel": "美国经济分析局与美国人口普查局",
+      "published_date": "2026-11-04",
+      "url": "https://www.bea.gov/news/2026/us-international-trade-goods-and-services-september-2026",
+      "summary": "美国9月货物和服务贸易逆差为1050亿美元，较修订后的8月1057亿美元减少7亿美元；出口3215亿美元、环比增长1.9%，进口4266亿美元、环比增长1.2%。年初至9月逆差同比减少12.2%。",
+      "analysis": "逆差收窄来自出口增幅略高于进口，但出口和进口均为名义、季调后数据且后续可能修订；不能将单月逆差变化直接等同于内需或外需趋势。"
     }
   ],
   "externalRisks": [
     {
-      "title": "美国9月劳动力需求总体变化不大",
+      "title": "美国中期选举结果落地后全球股债上涨、油价大跌",
       "stance": "中性",
-      "sourceLabel": "美国劳工统计局JOLTS",
-      "published_date": "2026-11-03",
-      "url": "https://www.bls.gov/news.release/jolts.htm",
-      "summary": "职位空缺、招聘和总离职分别约750万、540万和530万，主动离职上升至340万。",
-      "analysis": "这是一项已发布数据，不是预测；美联储政策判断还取决于通胀、工资、失业率和金融条件。"
+      "sourceLabel": "路透社，Chibuike Oguh、Amanda Cooper",
+      "published_date": "2026-11-04",
+      "url": "https://www.reuters.com/world/china/global-markets-wrapup-1-2026-11-04/",
+      "summary": "11月4日美国三大股指收涨，道指上涨3.03%、标普500上涨1.58%、纳指上涨1.44%；美国10年期国债收益率降至4.88%，布伦特原油结算价跌近9%至每桶94.62美元，现货黄金上涨3.49%至每盎司4065.80美元。",
+      "analysis": "市场将选举结果解读为政策不确定性下降，但国会监督、财政谈判、人工智能监管和地缘冲突仍是后续变量；当日价格反应不是对政策最终落地的确认。"
     }
   ],
-  "industryPolicy": [
+  "news": [
     {
-      "title": "磷化铟订单与GPU采购同时出现大额经营披露",
-      "stance": "中性",
-      "sourceLabel": "云南锗业、游族网络公告",
+      "title": "三环集团拟以5亿元至10亿元回购股份",
+      "stance": "利好",
+      "sourceLabel": "三环集团回购报告书；巨潮资讯",
       "published_date": "2026-11-04",
-      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=002428",
-      "summary": "云南锗业子公司签订2027至2031年磷化铟衬底长期安排；游族网络子公司签署42.25亿元GPU采购合同。",
-      "analysis": "前者是潜在销售需求但受出口许可和订单约束，后者是采购支出且受交付和技术管制约束；两者均不能直接转化为当期利润。",
-      "extraSources": [
-        {
-          "label": "游族网络公告原文",
-          "url": "https://static.cninfo.com.cn/finalpage/2026-11-04/1225656231.PDF"
-        }
-      ]
-    }
-  ],
-  "riskUpdates": [
-    {
-      "title": "山鹰国际实控人兼董事长被证监会立案",
-      "stance": "利空",
-      "sourceLabel": "山鹰国际公告；证监立案字0382026008号",
-      "published_date": "2026-11-04",
-      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=600567",
-      "summary": "立案事由为涉嫌内幕交易和短线交易，调查对象为吴明武个人。",
-      "analysis": "调查结果和处罚尚未形成；后续核实公司治理、履职变化及证监会结论。"
+      "url": "https://www.cninfo.com.cn/new/commonUrl/pageOfSearch?code=300408&endDate=2026-11-05&name=%E4%B8%89%E7%8E%AF%E9%9B%86%E5%9B%A2&orgId=9900023108&startDate=2026-11-05&url=disclosure%2Flist%2Fsearch",
+      "summary": "公司董事会审议通过第四期回购方案，拟以集中竞价方式回购A股，资金总额不低于5亿元且不超过10亿元，回购价格上限100元/股，用于维护公司价值及股东权益。",
+      "analysis": "这是董事会通过的回购方案，不是已完成回购；实际股数、均价和实施金额需以后续进展及结果公告核实。"
     },
     {
-      "title": "国晟科技重要光伏子公司停产风险进入明确验证期",
-      "stance": "利空",
-      "sourceLabel": "国晟科技公告临2026-097",
+      "title": "亨通光电拟回购1亿元至2亿元，控股股东计划增持4亿元至6亿元",
+      "stance": "利好",
+      "sourceLabel": "亨通光电回购报告书及控股股东增持计划；巨潮资讯",
       "published_date": "2026-11-04",
-      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=603778",
-      "summary": "三家光伏子公司自9月8日起停产，若12月7日前未复产，公司股票存在被实施其他风险警示风险。",
-      "analysis": "当前状态是持续停产而非已经被实施风险警示；复产、订单恢复和经营影响以公司后续正式公告及审计数据为准。"
+      "url": "https://www.cninfo.com.cn/new/commonUrl/pageOfSearch?code=600487&endDate=2026-11-05&name=%E4%BA%A8%E9%80%9A%E5%85%89%E7%94%B5&orgId=gssh0600487&startDate=2026-11-05&url=disclosure%2Flist%2Fsearch",
+      "summary": "公司拟以不超过84.05元/股回购1亿元至2亿元股份，用于员工持股计划或股权激励；控股股东亨通集团另计划在12个月内增持4亿元至6亿元，公告时持股比例24.07%。",
+      "analysis": "回购和增持均为计划阶段，资金上限不代表必然全额实施；两项安排的实际成交数量、价格及完成进度应分别核验。"
+    },
+    {
+      "title": "海光信息拟以5亿元至8亿元回购股份",
+      "stance": "利好",
+      "sourceLabel": "海光信息公告2026-039；巨潮资讯",
+      "published_date": "2026-11-04",
+      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=688041",
+      "summary": "公司拟使用自有或自筹资金，以集中竞价方式回购不低于5亿元且不超过8亿元股份，价格上限318.52元/股，拟用于员工持股计划或股权激励，实施期限为董事会审议通过后12个月。",
+      "analysis": "方案已获董事会审议，但尚非实施结果；按价格上限测算的股数和占比只是估算，最终影响取决于实际成交和后续股份用途。"
+    },
+    {
+      "title": "凯莱英拟以5亿元至7亿元回购股份，至少四成拟注销",
+      "stance": "利好",
+      "sourceLabel": "凯莱英公告2026-058；巨潮资讯",
+      "published_date": "2026-11-04",
+      "url": "https://www.cninfo.com.cn/new/commonUrl/pageOfSearch?code=002821&endDate=2026-11-05&name=%E5%87%AF%E8%8E%B1%E8%8B%B1&orgId=9900026806&startDate=2026-11-05&url=disclosure%2Flist%2Fsearch",
+      "summary": "公司拟以不超过246元/股回购5亿元至7亿元股份，其中用于员工持股或股权激励的数量不高于回购总量60%，用于注销减少注册资本的数量不低于40%，实施期限12个月。",
+      "analysis": "注销比例安排与激励用途需要区分；当前仍是方案，实际回购量、注销量及股本变化须以后续实施和注销公告确认。"
+    },
+    {
+      "title": "太辰光拟以6000万元至1亿元回购股份",
+      "stance": "利好",
+      "sourceLabel": "太辰光公告2026-034；巨潮资讯",
+      "published_date": "2026-11-04",
+      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=300570",
+      "summary": "公司拟使用自有或自筹资金，以不超过120元/股回购6000万元至1亿元股份，拟用于后续股权激励或员工持股计划，实施期限12个月。",
+      "analysis": "该事项属于董事会通过的未来回购安排，按上限价格估算的50万至83.33万股并非已成交数量。"
+    },
+    {
+      "title": "中矿资源高级管理人员计划增持4000万元至6000万元",
+      "stance": "利好",
+      "sourceLabel": "中矿资源增持计划；巨潮资讯",
+      "published_date": "2026-11-04",
+      "url": "https://www.cninfo.com.cn/new/commonUrl/pageOfSearch?code=002738&endDate=2026-11-05&name=%E4%B8%AD%E7%9F%BF%E8%B5%84%E6%BA%90&orgId=9900015289&startDate=2026-11-05&url=disclosure%2Flist%2Fsearch",
+      "summary": "公司部分实际控制人的一致行动人、副总裁王治伟计划在6个月内增持公司股份，拟增持金额不低于4000万元且不超过6000万元。",
+      "analysis": "这是个人增持计划，尚未形成完整成交结果；实际增持价格、股数和完成比例需以后续公告核实。"
+    },
+    {
+      "title": "武汉天源联合体签订36.4亿元共享储能项目合同",
+      "stance": "利好",
+      "sourceLabel": "武汉天源重大合同公告；巨潮资讯",
+      "published_date": "2026-11-04",
+      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=301127",
+      "summary": "公司作为联合体牵头方，与相关方签订灵武市1000MW/4000MWh集中共享储能项目设备加安装一体化合同，含税总金额36.4亿元，超过公司最近一个会计年度经审计主营业务收入的100%。",
+      "analysis": "合同总额包含联合体整体工作且收入将按履约进度确认；项目工期、结算、回款和各成员实际分工仍决定公司最终确认收入与现金流。"
+    },
+    {
+      "title": "万胜智能收到合计约2.09亿元国家电网项目中标通知书",
+      "stance": "利好",
+      "sourceLabel": "万胜智能中标公告；巨潮资讯",
+      "published_date": "2026-11-04",
+      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=300882",
+      "summary": "公司收到国家电网及国网物资的中标通知书，中标2026年营销项目第二次设备及智能融合终端采购项目，合计金额约2.09亿元，占2025年度经审计营业收入14.91%。",
+      "analysis": "由中标候选人转为收到中标通知书提高了确定性，但收入仍取决于合同签署、交付验收和结算进度，不能将中标金额直接视为当期利润。"
+    },
+    {
+      "title": "富临精工在建项目发生导热油管廊火情，无人员伤亡",
+      "stance": "利空",
+      "sourceLabel": "富临精工公告2026-091；巨潮资讯",
+      "published_date": "2026-11-04",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-11-04/1225656659.PDF",
+      "summary": "11月1日，公司控股子公司下属在建项目2号研磨厂房东侧导热油管廊发生火情，系导热油泄漏引发；无人员伤亡、无爆炸及连锁风险，火情已清除，直接损失仍在评估。",
+      "analysis": "事故已处置且公司称主产线核心设备未受影响，但损失金额、整改要求和建设进度影响尚未完全量化，应以调查和后续公告为准。"
+    },
+    {
+      "title": "天山股份因商誉减值及坏账计提不审慎被责令改正",
+      "stance": "利空",
+      "sourceLabel": "新疆证监局行政监管措施决定书〔2026〕60号、〔2026〕61号；天山股份公告",
+      "published_date": "2026-11-05",
+      "url": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=000877",
+      "summary": "新疆证监局指出公司2023年至2025年个别商誉减值测试假设依据不足，且2025年应收账款模型单元格引用错误导致少计提坏账准备2109.15万元，对公司采取责令改正，对董事长、总裁和财务总监出具警示函。",
+      "analysis": "监管措施确认了财务核算和信息披露问题；公司需在规定期限内整改，相关财务报表是否调整及调整幅度应以后续更正或整改公告核实。"
     }
   ],
-  "marketBreadth": [
+  "analysts": [
     {
-      "title": "11月3日主要指数回落，成交额缩至约1.72万亿元",
+      "title": "摩根大通预计12月加息25个基点，但不认为会形成长期加息周期",
       "stance": "中性",
-      "sourceLabel": "第一财经收盘节目及公开行情",
+      "sourceLabel": "摩根大通全球研究；Michael Feroli",
       "published_date": "2026-11-03",
-      "url": "https://www.yicai.com/video/103423905.html",
-      "summary": "上证指数收于3608.10点、跌0.82%；深证成指跌1.21%，创业板指跌2.73%；沪深京三市成交额约1.72万亿元，较前日减少约800亿元。",
-      "analysis": "科技成长指数跌幅大于上证指数，显示风格分化；未取得同口径20日成交均额，不计算相对20日均额，单日回落不外推后续方向。"
+      "url": "https://cws-main-ndc.jpmorgan.com/insights/global-research/economy/fed-rate-cuts",
+      "summary": "摩根大通美国首席经济学家Michael Feroli称，10月FOMC按兵不动后仍保留偏鹰倾向；该机构基准预测为12月加息25个基点，但不预计出现持续性的长期加息周期。",
+      "analysis": "这是机构预测而非美联储承诺，关键假设是核心通胀继续偏强且劳动力市场保持韧性；11月6日就业数据和11月10日CPI将检验这一判断。"
+    },
+    {
+      "title": "高盛Trina Chen称中国企业在新兴市场的产品份额或已达24%",
+      "stance": "中性",
+      "sourceLabel": "高盛研究；Trina Chen，Allison Nathan访谈",
+      "published_date": "2026-10-13",
+      "url": "https://www.goldmansachs.com/insights/goldman-sachs-exchanges/where-chinese-exports-are-gaining-the-most-market-share",
+      "summary": "高盛大中华区股票研究联席主管Trina Chen表示，其团队覆盖11个行业和40家中外企业的分析显示，中国企业在新兴市场的产品份额可能已达24%，相关收入增速约为当地市场自然增长的15倍。",
+      "analysis": "这是基于高盛样本和行业研究的公开访谈结论，不等于全部出口行业的官方统计；企业能否转化为利润仍取决于价格、产品质量、贸易摩擦和本地化成本。"
     }
   ],
   "eventCalendar": [
     {
-      "title": "11月4日8:30（美国东部时间）：美国9月国际贸易数据",
+      "title": "美国将发布10月就业报告与CPI",
       "stance": "中性",
-      "sourceLabel": "美国经济分析局发布日程",
-      "published_date": "2026-10-06",
-      "url": "https://www.bea.gov/news/schedule/",
-      "summary": "BEA计划发布9月货物和服务贸易数据。",
-      "analysis": "状态为正式日程待发布；实际值公布前不把市场预测写成事实，需区分名义金额、实际贸易量、货物与服务。"
+      "sourceLabel": "美国劳工统计局发布日历",
+      "published_date": "2026-11-03",
+      "url": "https://www.bls.gov/schedule/2026/11_sched.htm",
+      "summary": "美国劳工统计局计划于11月6日08:30（美国东部时间）发布10月就业形势报告，于11月10日08:30发布10月CPI和实际收入数据。",
+      "analysis": "这是正式预约日历，具体发布时间可能由统计机构调整；发布前不存在实际值，不能以市场预测替代官方数据。"
     },
     {
-      "title": "11月5日8:30（美国东部时间）：美国三季度生产率与成本初值",
+      "title": "中国10月CPI和PPI定于11月9日发布",
       "stance": "中性",
-      "sourceLabel": "美国劳工统计局发布日程",
-      "published_date": "2026-02-18",
-      "url": "https://www.bls.gov/schedule/2026/11_sched_list.htm",
-      "summary": "BLS计划发布三季度非农商业部门生产率和单位劳动力成本初值。",
-      "analysis": "初值可能修订；单位劳动力成本需结合产出、工时和工资口径判断。"
-    },
-    {
-      "title": "11月6日8:30（美国东部时间）：美国10月就业报告",
-      "stance": "中性",
-      "sourceLabel": "美国劳工统计局发布日程",
-      "published_date": "2026-02-18",
-      "url": "https://www.bls.gov/schedule/2026/11_sched_list.htm",
-      "summary": "BLS计划发布10月非农就业、失业率、劳动参与率和平均时薪数据。",
-      "analysis": "需同步核实前值修订和家庭调查、机构调查差异，预测值不作为实际数据。"
-    },
-    {
-      "title": "11月9日9:30（北京时间）：中国10月CPI和PPI",
-      "stance": "中性",
-      "sourceLabel": "国家统计局2026年发布日程",
-      "published_date": "2025-12-24",
-      "url": "https://www.stats.gov.cn/xw/tjxw/tzgg/202512/t20251224_1962137.html",
-      "summary": "国家统计局日程列明11月9日发布10月居民消费价格和工业生产者价格数据。",
-      "analysis": "发布日期为预定日程，可能调整；发布后需区分同比、环比、核心CPI及基数影响。"
-    },
-    {
-      "title": "11月10日8:30（美国东部时间）：美国10月CPI",
-      "stance": "中性",
-      "sourceLabel": "美国劳工统计局发布日程",
-      "published_date": "2026-02-18",
-      "url": "https://www.bls.gov/schedule/2026/11_sched_list.htm",
-      "summary": "BLS计划发布10月CPI及实际收入数据。",
-      "analysis": "正式发布前不使用预测代替实际；需区分总CPI、核心CPI、同比和环比。"
+      "sourceLabel": "国家统计局2026年主要统计信息发布日程",
+      "published_date": "2025-12-26",
+      "url": "https://www.stats.gov.cn/sj/fbrc/",
+      "summary": "国家统计局日程显示，10月居民消费价格指数和工业生产者价格指数计划于11月9日09:30（北京时间）发布。",
+      "analysis": "该日期为官方预约安排，实际发布仍以国家统计局当天公告为准；同比、环比和核心CPI口径需在原始数据中分别核验。"
     }
   ]
 }
